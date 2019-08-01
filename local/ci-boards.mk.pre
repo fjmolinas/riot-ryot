@@ -1,0 +1,30 @@
+# Use the 'fco-ci' boards for flashing and testing
+# ===============================================
+ifneq (,$(FCO_CI))
+  FCO_CI_SERVER ?= ci@ci-riot-tribe.saclay.inria.fr
+  FCO_CI_DIR    ?= /builds/boards
+  FCO_CI_MAKE   ?= BOARD=$(BOARD) QUIET=0 make --no-print-directory -C $(FCO_CI_DIR)
+  # Remote flashfile respects the extension (required for openocd)
+  FCO_CI_FLASHFILE ?= $(FCO_CI_DIR)/bin/$(BOARD)_flashfile$(suffix $(FLASHFILE))
+
+  list-ci-boards:
+	@ssh $(FCO_CI_SERVER) '$(FCO_CI_MAKE) info-debug-variable-CI_CONNECTED_BOARDS'
+
+  # Flash must do the copy and flash
+  #  * 'IMAGE_OFFSET' must be sent to to handle 'riotboot/flash-slotX'
+  #  * 'FLASHFILE' is set from the command line to force the value
+  # Set FLASHER to 'ssh' to not trigger compiling 'edbg'
+  override FLASHER = ssh
+  override FFLAGS = $(FCO_CI_SERVER) 'IMAGE_OFFSET=$(IMAGE_OFFSET) $(FCO_CI_MAKE) flash-only FLASHFILE=$(FCO_CI_FLASHFILE)'
+  # Use rsync to honor remote permissions
+  SSH_UPLOAD = rsync --chmod=ugo=rwX
+  define flash-recipe
+    $(SSH_UPLOAD) $(FLASHFILE) $(FCO_CI_SERVER):$(FCO_CI_FLASHFILE)
+    $(FLASHER) $(FFLAGS)
+  endef
+
+  RESET              = ssh
+  RESET_FLAGS        = $(FCO_CI_SERVER) '$(FCO_CI_MAKE) reset'
+  override TERMPROG  = ssh
+  override TERMFLAGS = -t $(FCO_CI_SERVER) '$(FCO_CI_MAKE) term'
+endif
