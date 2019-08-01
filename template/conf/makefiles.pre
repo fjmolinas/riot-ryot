@@ -12,8 +12,10 @@ CI_BOARDS += nucleo-f207zg
 CI_BOARDS += nucleo-f103rb
 CI_BOARDS += nucleo-f091rc
 
-# Connected boards
 CI_CONNECTED_BOARDS = $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*))
+
+.PHONY: list-boards
+list-boards: info-debug-variable-CI_CONNECTED_BOARDS
 
 # Common configuration
 CFG_PORT = /dev/riot/tty-$(BOARD)

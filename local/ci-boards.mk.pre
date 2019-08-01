@@ -8,7 +8,7 @@ ifneq (,$(FCO_CI))
   FCO_CI_FLASHFILE ?= $(FCO_CI_DIR)/bin/$(BOARD)_flashfile$(suffix $(FLASHFILE))
 
   list-ci-boards:
-	@ssh $(FCO_CI_SERVER) '$(FCO_CI_MAKE) info-debug-variable-CI_CONNECTED_BOARDS'
+	@ssh $(FCO_CI_SERVER) '$(FCO_CI_MAKE) list-boards'
 
   # Flash must do the copy and flash
   #  * 'IMAGE_OFFSET' must be sent to to handle 'riotboot/flash-slotX'
