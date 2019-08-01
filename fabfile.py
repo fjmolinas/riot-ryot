@@ -142,9 +142,19 @@ def configure_ci_groups():
 def configure_builds_config():
     run('rm -rf /builds/conf')
     put('template/conf', '/builds')
+    # This set makefiles.pre to avoid sourcing every time ssh is called
     append('/etc/environment', 'RIOT_MAKEFILES_GLOBAL_PRE="/builds/conf/makefiles.pre"',
            use_sudo=True)
 
+
+@task
+def configure_riot_flash_tool():
+    run('mkdir -p /builds/boards')
+    run('git clone https://github.com/RIOT-OS/RIOT.git /builds/boards/RIOT || true')
+    run('git -C /builds/boards/RIOT fetch origin')
+    run('git -C /builds/boards/RIOT checkout origin/master')
+    put('template/boards/Makefile', '/builds/boards')
+    run('mkdir -p /builds/boards/bin')
 
 @task
 def setup():
@@ -164,4 +174,4 @@ def setup():
     execute(configure_udev)
     execute(configure_builds_config)
     execute(configure_ci_groups)
-
+    execute(configure_riot_flash_tool)
