@@ -1,3 +1,5 @@
+CI_CONF_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+
 # List of connected boards, there could be more boards connected
 # than used in a build
 CI_BOARDS += nucleo-l432kc
@@ -25,3 +27,6 @@ endif
 
 # Allways build in docker
 BUILD_IN_DOCKER = 1
+
+# Add makefiles post
+RIOT_MAKEFILES_GLOBAL_POST += $(CI_CONF_DIR)/makefiles.post

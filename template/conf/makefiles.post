@@ -1,0 +1,5 @@
+# Extract parallel option
+# The number of jobs is only available after make 4.2
+# The value will not be available in make but in the targets body
+MAKE_PARALLEL = $(filter -j -j%,$(MAKEFLAGS))
+DOCKER_MAKECMDGOALS += $(MAKE_PARALLEL)
