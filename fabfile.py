@@ -156,6 +156,15 @@ def configure_riot_flash_tool():
     put('template/boards/Makefile', '/builds/boards')
     run('mkdir -p /builds/boards/bin')
 
+
+@task
+def clone_ci_tools_repo():
+    run('mkdir -p /builds/git')
+    run('git clone https://github.com/fjmolinas/ci-riot-tribe.git /builds/git/ci-riot-tribe || true')
+    run('git -C /builds/git/ci-riot-tribe fetch origin')
+    run('git -C /builds/git/ci-riot-tribe checkout origin/master')
+
+
 @task
 def setup():
     """Setup the whole server.
@@ -175,3 +184,4 @@ def setup():
     execute(configure_builds_config)
     execute(configure_ci_groups)
     execute(configure_riot_flash_tool)
+    execute(clone_ci_tools_repo)
