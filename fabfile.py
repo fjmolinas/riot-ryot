@@ -23,6 +23,7 @@ def setup_sudo_and_ssh_key():
     _setup_authorized_keys()
     _setup_ci_nopasswd()
 
+
 def _setup_authorized_keys():
     run('mkdir -p ~/.ssh')
     put('template/authorized_keys', '~/.ssh')
@@ -99,8 +100,8 @@ def install_all_packages():
 @task
 def install_common():
     """Install common sever dependencies."""
-    packages = ['vim', 'tar', 'git', 'build-essential',
-                'aptitude', 'openjdk-8-jre-headless']
+    packages = ['vim', 'tar', 'git', 'build-essential', 'screen',
+                'aptitude', 'openjdk-8-jre-headless', 'tmux']
     packages += ['python3', 'python3-dev', 'python3-pip',
                  'python3-virtualenv']
     install(' '.join(packages))
@@ -123,7 +124,7 @@ def install_riot():
 def disable_dns_mask_for_docker():
     """Disable dnsmask for NetworkManager."""
     sed('/etc/NetworkManager/NetworkManager.conf',
-        r'^dns=dnsmasq','#dns=dnsmasq', use_sudo=True)
+        r'^dns=dnsmasq', '#dns=dnsmasq', use_sudo=True)
     sudo('systemctl restart NetworkManager.service')
 
 
@@ -143,7 +144,8 @@ def configure_builds_config():
     run('rm -rf /builds/conf')
     put('template/conf', '/builds')
     # This set makefiles.pre to avoid sourcing every time ssh is called
-    append('/etc/environment', 'RIOT_MAKEFILES_GLOBAL_PRE="/builds/conf/makefiles.pre"',
+    append('/etc/environment',
+           'RIOT_MAKEFILES_GLOBAL_PRE="/builds/conf/makefiles.pre"',
            use_sudo=True)
 
 
@@ -159,10 +161,9 @@ def configure_riot_flash_tool():
 
 @task
 def clone_ci_tools_repo():
-    run('mkdir -p /builds/git')
-    run('git clone https://github.com/fjmolinas/ci-riot-tribe.git /builds/git/ci-riot-tribe || true')
-    run('git -C /builds/git/ci-riot-tribe fetch origin')
-    run('git -C /builds/git/ci-riot-tribe checkout origin/master')
+    run('mkdir -p /builds/scripts')
+    put('scripts/ci_test_all.sh', '/builds/scripts')
+    run('git init --bare ~/.gitcache')
 
 
 @task
