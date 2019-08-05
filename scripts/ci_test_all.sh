@@ -12,7 +12,7 @@ readonly BOARDS=${@:-${CI_CONNECTED_BOARDS}}
 
 test_board() {
   local board="$1"
-  ${SCRIPT} "${RIOT}" "${board}" "${RESULTS}" -j0 --clean-after
+  ${SCRIPT} "${RIOT}" "${board}" "${RESULTS}" -j0 --clean-after --with-test-only
 }
 
 print_results() {
@@ -27,7 +27,6 @@ print_results() {
 
 main() {
   local results=0
-  rm -rf "${RESULTS}"
   for board in ${BOARDS}; do
     test_board "${board}" || results=1
   done

@@ -161,8 +161,8 @@ def configure_riot_flash_tool():
 
 @task
 def clone_ci_tools_repo():
-    run('mkdir -p /builds/scripts')
-    put('scripts/ci_test_all.sh', '/builds/scripts')
+    run('rm -rf /builds/scripts')
+    put('scripts/', '/builds', mirror_local_mode=True)
     run('git init --bare ~/.gitcache')
 
 
