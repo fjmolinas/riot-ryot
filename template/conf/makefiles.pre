@@ -7,6 +7,7 @@ CI_BOARDS += nucleo-l152re
 CI_BOARDS += nucleo-l073rz
 CI_BOARDS += nucleo-f767zi
 CI_BOARDS += nucleo-f446re
+CI_BOARDS += nucleo-f410rb
 CI_BOARDS += nucleo-f303k8
 CI_BOARDS += nucleo-f207zg
 CI_BOARDS += nucleo-f103rb
