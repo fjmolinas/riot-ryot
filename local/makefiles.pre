@@ -1,0 +1,24 @@
+# List of connected boards, there could be more boards connected
+# than used in a build
+CI_BOARDS += nucleo-l432kc
+CI_BOARDS += nucleo-l152re
+CI_BOARDS += nucleo-l073rz
+CI_BOARDS += nucleo-f767zi
+CI_BOARDS += nucleo-f446re
+CI_BOARDS += nucleo-f303k8
+CI_BOARDS += nucleo-f207zg
+CI_BOARDS += nucleo-f103rb
+CI_BOARDS += nucleo-f091rc
+
+# Common configuration
+CFG_PORT = /dev/riot/tty-$(BOARD)
+CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
+
+# Board specific configuration
+ifneq (,$(findstring $(BOARD),$(CI_BOARDS)))
+  PORT = $(CFG_PORT)
+  DEBUG_ADAPTER_ID = $(CFG_PORT_DEBUG_ADAPTER_ID)
+endif
+
+
+$(info $(PORT) $(DEBUG_ADAPTER_ID))
