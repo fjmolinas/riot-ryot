@@ -1,18 +1,33 @@
 #! /bin/bash
 
-# TODO: shellcheck
+# TODO: use getopt instead of getops
 
 readonly RIOT="$1"; shift
 readonly RESULTS="${RIOT}/results"
 readonly SCRIPT=${RIOT}/dist/tools/compile_and_test_for_board/compile_and_test_for_board.py
-# Handle as array
 readonly CI_CONNECTED_BOARDS=$(make --no-print-directory -C /builds/boards/ list-boards)
-# Handle as array
-readonly BOARDS=${@:-${CI_CONNECTED_BOARDS}}
 
-test_board() {
+# Parse arguments
+while getopts "a:b:" name; do
+  case $name in
+    a)  a="$OPTARG";;
+    b)  b="$OPTARG";;
+    ?)  printf "Usage: %s [-a applications] [-b boards] \n" "$0"
+        exit 2;;
+  esac
+done
+
+# Default Boards
+if [ -z "$b" ]; then
+    readonly BOARDS=${CI_CONNECTED_BOARDS}
+else
+    readonly BOARDS=$b
+fi
+
+test_board_apps() {
   local board="$1"
-  ${SCRIPT} "${RIOT}" "${board}" "${RESULTS}" -j0 --clean-after --with-test-only
+  local apps="$2"
+  ${SCRIPT} "${RIOT}" "${board}" "${RESULTS}" -j0 --clean-after --with-test-only --applications="${apps}"
 }
 
 print_results() {
@@ -20,7 +35,7 @@ print_results() {
   for summary in */failuresummary.md; do
     printf "#### %s\n\n" "${summary}"
     cat "${summary}"; printf '\n'
-  done > failuresummay.md
+  done > failuresummary.md
   cat failuresummary.md
   cd - || exit
 }
@@ -28,10 +43,11 @@ print_results() {
 main() {
   local results=0
   for board in ${BOARDS}; do
-    test_board "${board}" || results=1
+    test_board_apps "${board}" "${a}" || results=1
   done
   print_results
   exit "${results}"
 }
 
 main "$@"
+
