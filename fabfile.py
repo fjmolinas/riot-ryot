@@ -135,6 +135,11 @@ def configure_udev():
 
 
 @task
+def configure_default_python():
+    sudo("update-alternatives --install /usr/bin/python python /usr/bin/python3 10")
+
+
+@task
 def configure_ci_groups():
     sudo('usermod -a -G docker,plugdev,dialout ci')
 
@@ -184,5 +189,6 @@ def setup():
     execute(configure_udev)
     execute(configure_builds_config)
     execute(configure_ci_groups)
+    execute(configure_default_python)
     execute(configure_riot_flash_tool)
     execute(clone_ci_tools_repo)
