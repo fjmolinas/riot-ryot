@@ -19,7 +19,7 @@ def hello_world():
 
 @task
 def setup_sudo_and_ssh_key():
-    """ """
+    """Meta recipe that sets up ssh and sudo no passwd"""
     _setup_authorized_keys()
     _setup_ci_nopasswd()
 
@@ -59,6 +59,7 @@ def create_builds_directory():
 
 @task
 def setup_ci():
+    """Avoid first install fail because of host validation"""
     put('template/known_hosts', '.ssh/known_hosts')
 
 
@@ -130,12 +131,14 @@ def disable_dns_mask_for_docker():
 
 @task
 def configure_udev():
+    """Configure connected boards udev rules"""
     put('template/70-riotboards.rules', '/etc/udev/rules.d/', use_sudo=True)
     sudo('udevadm control --reload')
 
 
 @task
 def configure_default_python():
+    """RIOT used python3 as default python"""
     sudo("update-alternatives --install /usr/bin/python python /usr/bin/python3 10")
 
 
@@ -146,6 +149,7 @@ def configure_ci_groups():
 
 @task
 def configure_builds_config():
+    """Copy makefiles.pre and makefiles.post"""
     run('rm -rf /builds/conf')
     put('template/conf', '/builds')
     # This set makefiles.pre to avoid sourcing every time ssh is called
@@ -156,6 +160,7 @@ def configure_builds_config():
 
 @task
 def configure_riot_flash_tool():
+    """Use latest master to flash"""
     run('mkdir -p /builds/boards')
     run('git clone https://github.com/RIOT-OS/RIOT.git /builds/boards/RIOT || true')
     run('git -C /builds/boards/RIOT fetch origin')
@@ -165,7 +170,8 @@ def configure_riot_flash_tool():
 
 
 @task
-def clone_ci_tools_repo():
+def setup_ci_tools():
+    """Copy ci scripts"""
     run('rm -rf /builds/scripts')
     put('scripts/', '/builds', mirror_local_mode=True)
     run('git init --bare ~/.gitcache')
@@ -191,4 +197,4 @@ def setup():
     execute(configure_ci_groups)
     execute(configure_default_python)
     execute(configure_riot_flash_tool)
-    execute(clone_ci_tools_repo)
+    execute(setup_ci_tools)
