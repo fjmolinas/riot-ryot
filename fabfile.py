@@ -111,7 +111,7 @@ def install_common():
 @task
 def install_riot():
     """Install riot specific tools."""
-    packages = ['make', 'docker.io', 'openocd']
+    packages = ['make', 'docker.io', 'openocd', 'socat']
     packages += ['python3-serial', 'python3-pexpect']
     packages += ['python3-cryptography', 'python3-pyasn1',
                  'python3-ecdsa', 'python3-crypto']
