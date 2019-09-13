@@ -9,7 +9,7 @@ SERVER = 'ci-riot-tribe.saclay.inria.fr'
 
 
 env.host_string = 'ci@{server}'.format(server=SERVER)
-
+env.use_ssh_config = True
 
 @task
 def hello_world():
