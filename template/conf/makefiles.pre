@@ -2,16 +2,23 @@ CI_CONF_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 # List of connected boards, there could be more boards connected
 # than used in a build
-CI_BOARDS += nucleo-l432kc
-CI_BOARDS += nucleo-l152re
-CI_BOARDS += nucleo-l073rz
-CI_BOARDS += nucleo-f767zi
-CI_BOARDS += nucleo-f446re
-CI_BOARDS += nucleo-f410rb
-CI_BOARDS += nucleo-f303k8
-CI_BOARDS += nucleo-f207zg
-CI_BOARDS += nucleo-f103rb
-CI_BOARDS += nucleo-f091rc
+
+# STM32 boards
+STM32_BOARDS += nucleo-l496zg
+STM32_BOARDS += nucleo-l432kc
+STM32_BOARDS += nucleo-l152re
+STM32_BOARDS += nucleo-l073rz
+STM32_BOARDS += nucleo-f767zi
+STM32_BOARDS += nucleo-f746zg
+STM32_BOARDS += nucleo-f446re
+STM32_BOARDS += nucleo-f410rb
+STM32_BOARDS += nucleo-f303k8
+STM32_BOARDS += nucleo-f207zg
+STM32_BOARDS += nucleo-f103rb
+STM32_BOARDS += nucleo-f091rc
+
+# All Boards
+CI_BOARDS += $(STM32_BOARDS)
 
 CI_CONNECTED_BOARDS = $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*))
 

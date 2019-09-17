@@ -1,15 +1,25 @@
 # List of configured boards. This boards should have a matching udev rule
 # in `template/70-riotboards.rules` respecting the common configuration of
 # /dev/riot/tty-$(BOARD)
-LOCAL_BOARDS += nucleo-l432kc
-LOCAL_BOARDS += nucleo-l152re
-LOCAL_BOARDS += nucleo-l073rz
-LOCAL_BOARDS += nucleo-f767zi
-LOCAL_BOARDS += nucleo-f446re
-LOCAL_BOARDS += nucleo-f303k8
-LOCAL_BOARDS += nucleo-f207zg
-LOCAL_BOARDS += nucleo-f103rb
-LOCAL_BOARDS += nucleo-f091rc
+
+# STM32 boards
+STM32_BOARDS += nucleo-l432kc
+STM32_BOARDS += nucleo-l152re
+STM32_BOARDS += nucleo-l073rz
+STM32_BOARDS += nucleo-f767zi
+STM32_BOARDS += nucleo-f446re
+STM32_BOARDS += nucleo-f410rb
+STM32_BOARDS += nucleo-f303k8
+STM32_BOARDS += nucleo-f207zg
+STM32_BOARDS += nucleo-f103rb
+STM32_BOARDS += nucleo-f091rc
+
+# NRF2 Boards
+NRF52_BOARDS += nrf52840-mdk
+
+# All Boards
+LOCAL_BOARDS += $(STM32_BOARDS)
+LOCAL_BOARDS += $(NRF52_BOARDS)
 
 # Common configuration
 CFG_PORT = /dev/riot/tty-$(BOARD)
