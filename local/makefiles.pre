@@ -20,6 +20,3 @@ ifneq (,$(findstring $(BOARD),$(LOCAL_BOARDS)))
   PORT = $(CFG_PORT)
   DEBUG_ADAPTER_ID = $(CFG_PORT_DEBUG_ADAPTER_ID)
 endif
-
-
-$(info $(PORT) $(DEBUG_ADAPTER_ID))
