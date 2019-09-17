@@ -18,6 +18,8 @@
 # * The variables definition in
 #   /lib/udev/rules.d/60-serial.rules
 
+# nucleo-l496zg
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066EFF383930434B43222549", SYMLINK+="riot/tty-nucleo-l496zg"
 
 # nucleo-l432kc
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF535750877267204547", SYMLINK+="riot/tty-nucleo-l432kc"
@@ -30,6 +32,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 
 # nucleo-f767zi
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF545753845187043822", SYMLINK+="riot/tty-nucleo-f767zi"
+
+# nucleo-f746zg
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF485550755187064051", SYMLINK+="riot/tty-nucleo-f746zg"
 
 # nucleo-f446re
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF485457725187123744", SYMLINK+="riot/tty-nucleo-f446re"
@@ -48,4 +53,8 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 
 # nucleo-f091rc
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0671FF555152876767013751", SYMLINK+="riot/tty-nucleo-f091rc"
+
+# nrf52840-mdk
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="ARM", ATTRS{serial}=="10260000033adcbb00000000000000000000000097969902", SYMLINK+="riot/tty-nrf52840-mdk"
+
 
