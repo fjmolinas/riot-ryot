@@ -4,11 +4,13 @@ CI_CONF_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 # than used in a build
 
 # STM32 boards
+STM32_BOARDS += p-l496g-cell02
 STM32_BOARDS += nucleo-l496zg
 STM32_BOARDS += nucleo-l432kc
 STM32_BOARDS += nucleo-l152re
 STM32_BOARDS += nucleo-l073rz
 STM32_BOARDS += nucleo-f767zi
+STM32_BOARDS += stm32f723e-disco
 STM32_BOARDS += nucleo-f746zg
 STM32_BOARDS += nucleo-f446re
 STM32_BOARDS += nucleo-f410rb
@@ -17,6 +19,9 @@ STM32_BOARDS += nucleo-f207zg
 STM32_BOARDS += nucleo-f103rb
 STM32_BOARDS += nucleo-f091rc
 
+# NRF5x boards
+NRF5x_BOARDS += nrf52840dk
+
 # Kinetis boards
 KINETIS_BOARDS += frdm-kw41z
 KINETIS_BOARDS += frdm-k64f
@@ -24,6 +29,7 @@ KINETIS_BOARDS += frdm-k64f
 # All Boards
 CI_BOARDS += $(STM32_BOARDS)
 CI_BOARDS += $(KINETIS_BOARDS)
+CI_BOARDS += $(NRF5x_BOARDS)
 
 CI_CONNECTED_BOARDS = $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*))
 
