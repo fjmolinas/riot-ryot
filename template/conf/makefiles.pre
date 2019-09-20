@@ -17,8 +17,13 @@ STM32_BOARDS += nucleo-f207zg
 STM32_BOARDS += nucleo-f103rb
 STM32_BOARDS += nucleo-f091rc
 
+# Kinetis boards
+KINETIS_BOARDS += frdm-kw41z
+KINETIS_BOARDS += frdm-k64f
+
 # All Boards
 CI_BOARDS += $(STM32_BOARDS)
+CI_BOARDS += $(KINETIS_BOARDS)
 
 CI_CONNECTED_BOARDS = $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*))
 

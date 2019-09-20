@@ -17,9 +17,15 @@ STM32_BOARDS += nucleo-f091rc
 # NRF2 Boards
 NRF52_BOARDS += nrf52840-mdk
 
+# Kinetis Boards
+KINETIS_BOARDS += frdm-kw41z
+KINETIS_BOARDS += frdm-k64f
+
 # All Boards
 LOCAL_BOARDS += $(STM32_BOARDS)
 LOCAL_BOARDS += $(NRF52_BOARDS)
+LOCAL_BOARDS += $(KINETIS_BOARDS)
+
 
 # Common configuration
 CFG_PORT = /dev/riot/tty-$(BOARD)
