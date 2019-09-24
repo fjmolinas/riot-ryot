@@ -8,6 +8,7 @@ STM32_BOARDS += nucleo-l496zg
 STM32_BOARDS += nucleo-l432kc
 STM32_BOARDS += nucleo-l152re
 STM32_BOARDS += nucleo-l073rz
+STM32_BOARDS += b-l072z-lrwan1
 STM32_BOARDS += stm32l0538-disco
 STM32_BOARDS += nucleo-f767zi
 STM32_BOARDS += stm32f723e-disco
@@ -27,6 +28,7 @@ NRF5x_BOARDS += nrf52840dk
 # Kinetis Boards
 KINETIS_BOARDS += frdm-kw41z
 KINETIS_BOARDS += frdm-k64f
+KINETIS_BOARDS += pba-d-01-kw2x
 
 # All Boards
 LOCAL_BOARDS += $(STM32_BOARDS)

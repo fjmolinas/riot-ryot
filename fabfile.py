@@ -144,6 +144,7 @@ def configure_default_python():
 
 @task
 def configure_ci_groups():
+    """Add ci to main groups"""
     sudo('usermod -a -G docker,plugdev,dialout ci')
 
 

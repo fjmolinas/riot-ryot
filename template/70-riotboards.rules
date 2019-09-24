@@ -33,6 +33,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 # nucleo-l073rz
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF544852707267181129", SYMLINK+="riot/tty-nucleo-l073rz"
 
+# b-l072z-lrwan1
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0674FF535753845187212018", SYMLINK+="riot/tty-b-l072z-lrwan1"
+
 #stm32l0538-disco
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0674FF515056805087162122", SYMLINK+="riot/tty-stm32l0538-disco"
 
@@ -78,4 +81,5 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}==
 # frdm-k64f
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="ARM", ATTRS{serial}=="0240000047784e4500329003d745001fddb1000097969900", SYMLINK+="riot/tty-frdm-k64f"
 
-
+# pba-d-01-kw2x
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="MBED", ATTRS{serial}=="02000203C3194E743EE5B38C", SYMLINK+="riot/tty-pba-d-01-kw2x"
