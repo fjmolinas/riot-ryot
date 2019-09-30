@@ -78,6 +78,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}==
 # nrf52840dk
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000683890121", SYMLINK+="riot/tty-nrf52840dk"
 
+# nrf52dk
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000682770831", SYMLINK+="riot/tty-nrf52dk"
+
 # frdm-kw41z
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000621000000", SYMLINK+="riot/tty-frdm-kw41z"
 

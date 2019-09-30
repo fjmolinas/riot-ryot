@@ -23,6 +23,7 @@ STM32_BOARDS += nucleo-f091rc
 
 # NRF5x boards
 NRF5x_BOARDS += nrf52840dk
+NRF5x_BOARDS += nrf52dk
 NRF5x_BOARDS += nrf52840-mdk
 
 # Kinetis boards
