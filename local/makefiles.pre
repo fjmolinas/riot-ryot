@@ -3,56 +3,56 @@
 # /dev/riot/tty-$(BOARD)
 
 ifneq (1,$(DISABLE_LOCAL_BOARDS))
-	# STM32 boards
-	STM32_BOARDS += p-l496g-cell02
-	STM32_BOARDS += nucleo-l496zg
-	STM32_BOARDS += b-l475e-iot01a
-	STM32_BOARDS += nucleo-l432kc
-	STM32_BOARDS += nucleo-l152re
-	STM32_BOARDS += nucleo-l073rz
-	STM32_BOARDS += b-l072z-lrwan1
-	STM32_BOARDS += stm32l0538-disco
-	STM32_BOARDS += nucleo-f767zi
-	STM32_BOARDS += stm32f723e-disco
-	STM32_BOARDS += nucleo-f746zg
-	STM32_BOARDS += nucleo-f446re
-	STM32_BOARDS += nucleo-f410rb
-	STM32_BOARDS += nucleo-f303k8
-	STM32_BOARDS += nucleo-f334r8
-	STM32_BOARDS += nucleo-f207zg
-	STM32_BOARDS += nucleo-f103rb
-	STM32_BOARDS += nucleo-f091rc
+  # STM32 boards
+  STM32_BOARDS += p-l496g-cell02
+  STM32_BOARDS += nucleo-l496zg
+  STM32_BOARDS += b-l475e-iot01a
+  STM32_BOARDS += nucleo-l432kc
+  STM32_BOARDS += nucleo-l152re
+  STM32_BOARDS += nucleo-l073rz
+  STM32_BOARDS += b-l072z-lrwan1
+  STM32_BOARDS += stm32l0538-disco
+  STM32_BOARDS += nucleo-f767zi
+  STM32_BOARDS += stm32f723e-disco
+  STM32_BOARDS += nucleo-f746zg
+  STM32_BOARDS += nucleo-f446re
+  STM32_BOARDS += nucleo-f410rb
+  STM32_BOARDS += nucleo-f303k8
+  STM32_BOARDS += nucleo-f334r8
+  STM32_BOARDS += nucleo-f207zg
+  STM32_BOARDS += nucleo-f103rb
+  STM32_BOARDS += nucleo-f091rc
 
-	# NRF2 Boards
-	NRF5x_BOARDS += nrf52840-mdk
-	NRF5x_BOARDS += nrf52dk
-	NRF5x_BOARDS += nrf52840dk
+  # NRF2 Boards
+  NRF5x_BOARDS += nrf52840-mdk
+  NRF5x_BOARDS += nrf52dk
+  NRF5x_BOARDS += nrf52840dk
 
-	# Kinetis Boards
-	KINETIS_BOARDS += frdm-kw41z
-	KINETIS_BOARDS += frdm-k64f
-	KINETIS_BOARDS += pba-d-01-kw2x
+  # Kinetis Boards
+  KINETIS_BOARDS += frdm-kw41z
+  KINETIS_BOARDS += frdm-k64f
+  KINETIS_BOARDS += pba-d-01-kw2x
 
-	# Iotlab
-	IOTLAB_BOARDS += iotlab-m3
+  # Iotlab
+  IOTLAB_BOARDS += iotlab-m3
 
-	# Atmel
-	ATMEL_BOARDS += samr21-xpro
+  # Atmel
+  ATMEL_BOARDS += samr21-xpro
 
-	# All Boards
-	LOCAL_BOARDS += $(STM32_BOARDS)
-	LOCAL_BOARDS += $(NRF5x_BOARDS)
-	LOCAL_BOARDS += $(KINETIS_BOARDS)
-	LOCAL_BOARDS += $(IOTLAB_BOARDS)
-	LOCAL_BOARDS += $(ATMEL_BOARDS)
+  # All Boards
+  LOCAL_BOARDS += $(STM32_BOARDS)
+  LOCAL_BOARDS += $(NRF5x_BOARDS)
+  LOCAL_BOARDS += $(KINETIS_BOARDS)
+  LOCAL_BOARDS += $(IOTLAB_BOARDS)
+  LOCAL_BOARDS += $(ATMEL_BOARDS)
 
-	# Common configuration
-	CFG_PORT = /dev/riot/tty-$(BOARD)
-	CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
+  # Common configuration
+  CFG_PORT = /dev/riot/tty-$(BOARD)
+  CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
 
-	# Board specific configuration
-	ifneq (,$(findstring $(BOARD),$(LOCAL_BOARDS)))
-	  PORT = $(CFG_PORT)
-	  DEBUG_ADAPTER_ID = $(CFG_PORT_DEBUG_ADAPTER_ID)
-	endif
+  # Board specific configuration
+  ifneq (,$(findstring $(BOARD),$(LOCAL_BOARDS)))
+    PORT = $(CFG_PORT)
+    DEBUG_ADAPTER_ID = $(CFG_PORT_DEBUG_ADAPTER_ID)
+  endif
 endif
