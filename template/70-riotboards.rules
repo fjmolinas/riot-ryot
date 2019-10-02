@@ -81,7 +81,10 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="IoT-LAB", ATTRS{product}=="M3", SYMLINK+="riot/tty-iotlab-m3"
 
 # nrf52840-mdk
-SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="ARM", ATTRS{serial}=="10260000033adcbb00000000000000000000000097969902", SYMLINK+="riot/tty-nrf52840-mdk"
+## nrf52840-mdk_0
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="ARM", ATTRS{serial}=="10260000033adcbb00000000000000000000000097969902", SYMLINK+="riot/tty-nrf52840-mdk", SYMLINK+="riot/tty-nrf52840-mdk_0"
+## nrf52840-mdk_1
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="ARM", ATTRS{serial}=="10260000033abfa400000000000000000000000097969902", SYMLINK+="riot/tty-nrf52840-mdk", SYMLINK+="riot/tty-nrf52840-mdk_1"
 
 # nrf52840dk
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000683890121", SYMLINK+="riot/tty-nrf52840dk"
