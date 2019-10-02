@@ -7,6 +7,11 @@
 #     udevadm info --attribute-walk --name /dev/ttyACM0
 #     # for more detailed output with `ATTRS`
 
+# If support for more than one board of the same type is needed then each
+# board need is own rule and add a second SYMLINK following the scheme
+# /dev/riot/tty-board-name_NUMBER
+# e.g: /dev/riot/tty-board-samr21-xpro_0 & /dev/riot/tty-board-samr21-xpro_1
+
 # Udev only parses SUBSYSTEM and one parent. For others, we will rely on ENV
 # variables defined by 60-serial.rules
 # So the current filename should be higher than 60-serial.rules

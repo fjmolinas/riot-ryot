@@ -47,8 +47,11 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
   LOCAL_BOARDS += $(ATMEL_BOARDS)
 
   # Common configuration
-  CFG_PORT = /dev/riot/tty-$(BOARD)
+  CFG_PORT := /dev/riot/tty-$(BOARD)
   CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
+
+  # If multiple boards where given then override and strip the board number
+  override BOARD := $(shell printf '%s' '${BOARD}' | sed -E -e 's/(.+)_[0-9]+$$/\1/')
 
   # Board specific configuration
   ifneq (,$(findstring $(BOARD),$(LOCAL_BOARDS)))
