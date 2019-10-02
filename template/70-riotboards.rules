@@ -72,6 +72,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 # nucleo-f091rc
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0671FF555152876767013751", SYMLINK+="riot/tty-nucleo-f091rc"
 
+# iotlab-m3
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="IoT-LAB", ATTRS{product}=="M3", SYMLINK+="riot/tty-iotlab-m3"
+
 # nrf52840-mdk
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="ARM", ATTRS{serial}=="10260000033adcbb00000000000000000000000097969902", SYMLINK+="riot/tty-nrf52840-mdk"
 
@@ -89,3 +92,7 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}==
 
 # pba-d-01-kw2x
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="MBED", ATTRS{serial}=="02000203C3194E743EE5B38C", SYMLINK+="riot/tty-pba-d-01-kw2x"
+
+# samr21-xpro
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800004957", SYMLINK+="riot/tty-samr21-xpro"
+

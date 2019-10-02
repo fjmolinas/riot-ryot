@@ -33,10 +33,18 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
 	KINETIS_BOARDS += frdm-k64f
 	KINETIS_BOARDS += pba-d-01-kw2x
 
+	# Iotlab
+	IOTLAB_BOARDS += iotlab-m3
+
+	# Atmel
+	ATMEL_BOARDS += samr21-xpro
+
 	# All Boards
 	LOCAL_BOARDS += $(STM32_BOARDS)
 	LOCAL_BOARDS += $(NRF5x_BOARDS)
 	LOCAL_BOARDS += $(KINETIS_BOARDS)
+	LOCAL_BOARDS += $(IOTLAB_BOARDS)
+	LOCAL_BOARDS += $(ATMEL_BOARDS)
 
 	# Common configuration
 	CFG_PORT = /dev/riot/tty-$(BOARD)
