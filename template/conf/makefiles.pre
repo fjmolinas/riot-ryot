@@ -56,11 +56,8 @@ ifneq (,$(findstring $(BOARD),$(CI_BOARDS)))
   DEBUG_ADAPTER_ID = $(CFG_PORT_DEBUG_ADAPTER_ID)
 endif
 
-# Always build in docker
-BUILD_IN_DOCKER = 1
-
-# Always use OPENOCD
-PROGRAMMER = openocd
+# Add docker.makefiles.pre
+-include $(CI_CONF_DIR)/docker.makefiles.pre
 
 # Add makefiles post
 RIOT_MAKEFILES_GLOBAL_POST += $(CI_CONF_DIR)/makefiles.post

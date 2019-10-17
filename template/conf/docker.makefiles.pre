@@ -1,0 +1,18 @@
+
+# Always build in docker
+BUILD_IN_DOCKER = 1
+
+# Image used for docker/% targets
+DOCKER_TARGET_IMAGE ?= fjmolinas/riotdocker
+
+# HACK: ports are not yet configured so use privileged
+DOCKER_TARGET_FLAGS += --privileged
+
+# Extract parallel option
+# The number of jobs is only available after make 4.2
+# The value will not be available in make but in the targets body
+MAKE_PARALLEL = $(filter -j -j%,$(MAKEFLAGS))
+DOCKER_TARGET_MAKE_ARGS += $(MAKE_PARALLEL)
+
+# Include docker targets while #12419 is not merged
+include $(CI_CONF_DIR)/dockertargets.inc.mk
