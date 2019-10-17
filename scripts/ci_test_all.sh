@@ -8,11 +8,13 @@ readonly SCRIPT=${RIOT}/dist/tools/compile_and_test_for_board/compile_and_test_f
 readonly CI_CONNECTED_BOARDS=$(make --no-print-directory -C /builds/boards/ list-boards)
 
 # Parse arguments
-while getopts "a:b:" name; do
+while getopts "a:b:f:t:" name; do
   case $name in
     a)  a="$OPTARG";;
     b)  b="$OPTARG";;
-    ?)  printf "Usage: %s [-a applications] [-b boards] \n" "$0"
+    f)  f="$OPTARG";;
+    t)  t="$OPTARG";;
+    ?)  printf "Usage: %s [-a applications] [-b boards] [-f flash-targets] [-t test-targets]\n" "$0"
         exit 2;;
   esac
 done
@@ -27,7 +29,10 @@ fi
 test_board_apps() {
   local board="$1"
   local apps="$2"
-  ${SCRIPT} "${RIOT}" "${board}" "${RESULTS}" -j0 --clean-after --with-test-only --applications="${apps}"
+  local flash="$3"
+  local test="$4"
+  ${SCRIPT} "${RIOT}" "${board}" "${RESULTS}" \
+    -j0 --clean-after --with-test-only --applications="${apps}" --flash-targets="${flash}" --test-targets="${test}"
 }
 
 print_results() {
@@ -43,7 +48,7 @@ print_results() {
 main() {
   local results=0
   for board in ${BOARDS}; do
-    test_board_apps "${board}" "${a}" || results=1
+    test_board_apps "${board}" "${a}" "${f}" "${t}" || results=1
   done
   print_results
   exit "${results}"
