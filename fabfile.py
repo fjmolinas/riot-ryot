@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 
-from fabric.api import env, execute, put, task, sudo, run, runs_once
+from fabric.api import cd, env, execute, put, task, sudo, run, runs_once
 from fabric.contrib.files import sed, append
 
 
@@ -179,6 +179,16 @@ def setup_ci_tools():
 
 
 @task
+def get_dockertargets_mk():
+    """Fetch dockertargets makefile to use RIOT in docker"""
+    # For now since this is not in RIOT master wget dockertargets.inc.mk
+    # to use as makefile pre
+    with cd('/builds/conf'):
+        run('rm dockertargets.inc.mk || true')
+        run('wget -q https://raw.githubusercontent.com/fjmolinas/RIOT/wip_docker_targets/makefiles/docker/dockertargets.inc.mk')
+
+
+@task
 def setup():
     """Setup the whole server.
 
@@ -199,3 +209,5 @@ def setup():
     execute(configure_default_python)
     execute(configure_riot_flash_tool)
     execute(setup_ci_tools)
+
+    execute(get_dockertargets_mk)
