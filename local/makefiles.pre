@@ -52,15 +52,26 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
   LOCAL_BOARDS += $(ATMEL_BOARDS)
   LOCAL_BOARDS += $(TI_BOARDS)
 
-  # Common configuration
-  CFG_PORT := /dev/riot/tty-$(BOARD)
-  CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
+  # WARNING: the following handling will conflict with applications that have different
+  # behaviours depending on the boar used
+  BOARD_NUMLESS := $(shell printf '%s' '${BOARD}' | sed -E -e 's/(.+)_[0-9]+$$/\1/')
 
-  # If multiple boards where given then override and strip the board number
-  override BOARD := $(shell printf '%s' '${BOARD}' | sed -E -e 's/(.+)_[0-9]+$$/\1/')
+  ifneq (,$(findstring $(BOARD_NUMLESS),$(LOCAL_BOARDS)))
+    # Common configuration, we need to evaluate inmediatly so it doesn't use the redefined board
+    CFG_PORT := /dev/riot/tty-$(BOARD)
+    CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
 
-  # Board specific configuration
-  ifneq (,$(findstring $(BOARD),$(LOCAL_BOARDS)))
+    # If multiple boards where given then override and strip the board number
+    ifneq ($(BOARD),$(BOARD_NUMLESS))
+    # We do not use override which means BOARD must be set as an enviroment variable
+    # and not a MAKE variable
+    BOARD = $(BOARD_NUMLESS)
+    # We need to pass the BOARD variable to the docker environment since we are no longer
+    # setting BOARD threw the CMDLINE
+    DOCKER_ENVIRONMENT_CMDLINE += -e BOARD=$(BOARD)
+    endif
+
+    # Board specific configuration
     PORT = $(CFG_PORT)
     DEBUG_ADAPTER_ID = $(CFG_PORT_DEBUG_ADAPTER_ID)
   endif
