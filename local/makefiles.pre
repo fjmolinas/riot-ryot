@@ -3,6 +3,7 @@
 # /dev/riot/tty-$(BOARD)
 
 ifneq (1,$(DISABLE_LOCAL_BOARDS))
+
   # STM32 boards
   STM32_BOARDS += p-l496g-cell02
   STM32_BOARDS += nucleo-l496zg
@@ -39,12 +40,17 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
   # Atmel
   ATMEL_BOARDS += samr21-xpro
 
+  # TI
+  TI_BOARDS += z1
+  TI_BOARDS += remote-revb
+
   # All Boards
   LOCAL_BOARDS += $(STM32_BOARDS)
   LOCAL_BOARDS += $(NRF5x_BOARDS)
   LOCAL_BOARDS += $(KINETIS_BOARDS)
   LOCAL_BOARDS += $(IOTLAB_BOARDS)
   LOCAL_BOARDS += $(ATMEL_BOARDS)
+  LOCAL_BOARDS += $(TI_BOARDS)
 
   # Common configuration
   CFG_PORT := /dev/riot/tty-$(BOARD)

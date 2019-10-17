@@ -31,10 +31,15 @@ KINETIS_BOARDS += frdm-kw41z
 KINETIS_BOARDS += frdm-k64f
 KINETIS_BOARDS += pba-d-01-kw2x
 
+# TI boards
+TI_BOARDS += z1
+TI_BOARDS += remote-revb
+
 # All Boards
 CI_BOARDS += $(STM32_BOARDS)
 CI_BOARDS += $(KINETIS_BOARDS)
 CI_BOARDS += $(NRF5x_BOARDS)
+CI_BOARDS += $(TI_BOARDS)
 
 CI_CONNECTED_BOARDS = $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*))
 

@@ -50,7 +50,7 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 #stm32f723e-disco
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066BFF504955857567192810", SYMLINK+="riot/tty-stm32f723e-disco"
 
-# nucleo-f767zi
+#nucleo-f767zi
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF545753845187043822", SYMLINK+="riot/tty-nucleo-f767zi"
 
 # nucleo-f746zg
@@ -104,3 +104,8 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}==
 # samr21-xpro
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800004957", SYMLINK+="riot/tty-samr21-xpro"
 
+# z1
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="Z1RC1516", SYMLINK+="riot/tty-z1"
+
+# remote-revb
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="ZOL-RM02-B1002281", SYMLINK+="riot/tty-remote-revb"
