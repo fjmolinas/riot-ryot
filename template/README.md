@@ -6,6 +6,8 @@
 - [`makefiles.pre`](conf/makefiles.pre): sets the configuration for the
   CI.
 
+- [`docker.makefiles.pre`](conf/makefiles.pre): sets docker configuration
+
 ## [boards](boards)
 
 - [`Makefile`](boards/Makefile): fake application to call make. Allows

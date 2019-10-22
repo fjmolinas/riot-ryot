@@ -1,76 +1,60 @@
-# riot-ci-server
+# RYOT (run your own tests)
 
-## install
+    Give developers a bug report, and they will fix one bug
 
-1. Install requirements
+    Give them a way to run test, and they will fix bugs all their life
 
-    $ pip install requirements.txt
+This project wants to provide a tool for RIOT developers to easily run tests
+on their HW (development boards, multiple development boards).
 
-1. Change `SERVER` in `fabfile.py`
+The goal would be for all tests to be run on most boards at least every release,
+ideally every week.
 
-1. Add Authorized keys to [`authorized_keys`](template/authorized_keys)
+## How does it work?
 
-1. Setup machine
+To be able to scale we need to map multiple boards and be able to easily
+`flash` and `test` the desired boards.
 
-    $ fab setup
+We will use `udev` rules to define `SYMLINKS` between the boards serial port
+(dev/tty-board-name) and the actual serial port(dev/ttyACM* or other).
+With this we can query the rest of the boards serial `dev` information
+(DEBUG_ADAPTER_ID, PORT, etc.) to always flash and open a terminal on the
+correct port.
 
-1. Add boards to ci, follow [README.md](template/README.md)
+The logic for this will be in [`makefiles.pre`](template/conf/makefiles.pre).
 
-1. Loop over 4 & 5 as needed
+```
+PORT = /dev/riot/tty$(BOARDDEF)
+DEBUG_ADAPTER_ID = $(\
+    shell udevadm info -q property $(PORT) |\
+    sed -n ’/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}’)
+```
 
-## template
+A local configuration will allow flashing and testing on boards on your remote
+machine remotely [`makefiles.pre`](local/ci-boards.mk.pre).
 
-- [boards](template/boards): fake target to call make.
+```
+  override FLASHER = ssh
+  override FFLAGS = $(TRIBE_CI_SERVER) 'IMAGE_OFFSET=$(IMAGE_OFFSET) \
+    $(TRIBE_CI_MAKE) flash-only FLASHFILE=$(TRIBE_CI_FLASHFILE)'
+  SSH_UPLOAD = rsync --chmod=ugo=rwX
 
-- [conf](template/conf): configurations files to load pre and post RIOT makefiles.
+  define flash-recipe
+    $(SSH_UPLOAD) $(FLASHFILE) $(TRIBE_CI_SERVER):$(TRIBE_CI_FLASHFILE)
+    $(FLASHER) $(FFLAGS)
+  endef
 
-- [`authorized_keys`]: list of public authorized ssh keys
+  RESET              = ssh
+  RESET_FLAGS        = $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) reset'
+  override TERMPROG  = ssh
+  override TERMFLAGS = -t $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) term'
+```
 
-- [`known_hosts`]: list of known host, avoid accepting ssh key first time `fab setup`
-  is called.
+`tribe` team in Inria has 20+ boards and for a developer flashing on any 
+board is as easy as:
 
-- [`70-riotbooards.rules`]: custom udev rules for boards connected to ci. Follow
-  [boards-udev] to add new ones.
+    CI_RIOT_TRIBE=1 BOARD=<board> make -C examples/hello-world flash test
 
-## local
+## [Setup](setup.md)
 
-- [ci-boards.mk.pre](local/ci-boards.mk.pre): configuration to override `flash`
-  and `term` so its done over ci.
-
-- [makefiles.pre](local/makefiles.pre): configuration to use `LOCAL_BOARDS`
-   custom udev rules to dry `PORT` and `DEBUG_ADAPTER_ID`
-
-## scripts
-
-- [ci_test_all.sh](scripts/ci_test_all.sh): script to lunch tests on all board
-   connected to the ci or on a subset of them. It is only executed on
-   applications with a test script. It can be launched on a subset of these
-   applications.
-
-## boards-udev
-[boards-udev]: #boards-udev
-
-- use `udevadm info  /dev/ttyACM0` to query the udev database for information on 
-  device on port `/deb/ttyACM0`.
-
-  can also use `udevadm info --attribute-walk --name /dev/ttyACM0` for more detailed
-  output when first level o 
-
-- create a udev rule with information of the device and one parent to create a
-  matching rule in [70-riotboards.rules](template/70-riotboards.rules).
-
-- (*) udevrules can only match attributes from the device itself and a single parent.
-  If more parents info is required then 
-
-- reload rules: `udevadm control --reload-rules`
-
-- Boards PORT are symlinked to /dev/riot/tty-[board-name] if convention in [70-riotboards.rules](template/70-riotboards.rules) is respected.
-
-  (*) Only one board of each type is supported for the moment
-
-- Notes on USB3 to USB2.
-
-    - There are issues with usb3 and xhci as it does not allow enough devices
-      I tried this manually, lets see if it survives a reboot
-      `sudo setpci -H1 -d 8086:8c31 d0.l=0`
-      https://www.systutorials.com/241533/how-to-force-a-usb-3-0-port-to-work-in-usb-2-0-mode-in-linux/
+For install, setup and project details refer to [setup.md](setup.md).
