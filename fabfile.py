@@ -122,6 +122,90 @@ def install_riot():
 
 
 @task
+def install_riot_flashers():
+    """Install riot specific flashing tools."""
+    _install_uniflash()
+    _install_py_flashers()
+    _install_mspdebug()
+    _install_openocd()
+    _install_avrdude()
+
+
+@task
+def _install_jlink():
+    """Install jlink."""
+    with cd('/opt'):
+        sudo('wget --quiet --post-data \'accept_license_agreement=accepted&non_emb_ctr=confirmed&submit="Download software"\' https://www.segger.com/downloads/jlink/JLink_Linux_V650b_x86_64.deb')
+        sudo('dpkg --install JLink_Linux_V650b_x86_64.deb')
+        sudo('rm JLink_Linux_V650b_x86_64.deb')
+
+
+@task
+def _install_uniflash():
+    """Install uniflash."""
+    packages = ['libnotify4','libcanberra0','libpython2.7',
+                'libgconf2-4','libusb-dev']
+    install(' '.join(packages))
+
+    with cd('/opt'):
+        sudo(' wget --quiet http://software-dl.ti.com/ccs/esd/uniflash/uniflash_sl.4.6.0.2176.run')
+        sudo('chmod +x uniflash_sl.4.6.0.2176.run')
+        sudo('./uniflash_sl.4.6.0.2176.run --prefix /opt/ti/uniflash --mode unattended')
+        sudo('rm uniflash_sl.4.6.0.2176.run')
+
+    append('/etc/environment',
+           'UNIFLASH_PATH=/opt/ti/uniflash',
+           use_sudo=True)
+
+
+@task
+def _install_mspdebug():
+    """Install mspdebug."""
+    packages = ['libreadline-dev']
+    install(' '.join(packages))
+
+    sudo('mkdir -p /opt/mspdebug')
+    sudo('chown ci:ci /opt/mspdebug')
+    run('git clone --depth 1 https://github.com/dlbeer/mspdebug /opt/mspdebug || true')
+    with cd('/opt/mspdebug'):
+        run('make -j')
+        sudo('make install')
+
+
+@task
+def _install_openocd():
+    """Install openocd."""
+    packages = ['make','pkg-config','libtool']
+    packages += ['autoconf', 'automake']
+    install(' '.join(packages))
+
+    sudo('mkdir -p /opt/openocd')
+    sudo('chown ci:ci /opt/openocd')
+    run('git clone --depth 1 git://git.code.sf.net/p/openocd/code /opt/openocd || true')
+    with cd('/opt/openocd'):
+        run('./bootstrap')
+        run('./configure')
+        run('make -j')
+        sudo('make install')
+
+
+@task
+def _install_avrdude():
+    """Install avrdude."""
+    install('avrdude')
+
+
+@task
+def _install_py_flashers():
+    """Install pyocd and esptool."""
+    run('pip3 install pyocd esptool --user')
+
+    # HACK: currently it is using the one in esptoolchain by default, we do not
+    # esptoolchain in this image
+    append('/etc/environment','ESPTOOL=esptool.py',use_sudo=True)
+
+
+@task
 def disable_dns_mask_for_docker():
     """Disable dnsmask for NetworkManager."""
     sed('/etc/NetworkManager/NetworkManager.conf',
