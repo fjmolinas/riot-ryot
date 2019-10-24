@@ -29,10 +29,11 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
   NRF5x_BOARDS += nrf52dk
   NRF5x_BOARDS += nrf52840dk
 
-  # Kinetis Boards
-  KINETIS_BOARDS += frdm-kw41z
-  KINETIS_BOARDS += frdm-k64f
-  KINETIS_BOARDS += pba-d-01-kw2x
+  # NXP Boards
+  NXP_BOARDS += frdm-kw41z
+  NXP_BOARDS += frdm-k64f
+  NXP_BOARDS += pba-d-01-kw2x
+  NXP_BOARDS += mbed_lpc1768
 
   # Iotlab
   IOTLAB_BOARDS += iotlab-m3
@@ -50,7 +51,7 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
   # All Boards
   LOCAL_BOARDS += $(STM32_BOARDS)
   LOCAL_BOARDS += $(NRF5x_BOARDS)
-  LOCAL_BOARDS += $(KINETIS_BOARDS)
+  LOCAL_BOARDS += $(NXP_BOARDS)
   LOCAL_BOARDS += $(IOTLAB_BOARDS)
   LOCAL_BOARDS += $(ATMEL_BOARDS)
   LOCAL_BOARDS += $(TI_BOARDS)

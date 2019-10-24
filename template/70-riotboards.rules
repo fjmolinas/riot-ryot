@@ -114,3 +114,6 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}==
 DEVPATH=="*:1.0/tty/ttyACM*" SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1051", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000979001207", SYMLINK+="riot/tty-hifive1b"
 # hifive-1b-esp32
 DEVPATH=="*:1.2/tty/ttyACM*" SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1051", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000979001207", SYMLINK+="riot/tty-hifive1b-esp32"
+
+# mbed_lpc1768
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="MBED", ATTRS{serial}=="10106025f8ce4f04b222618f3367bbc51327", SYMLINK+="riot/tty-mbed_lpc1768"

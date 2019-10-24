@@ -26,10 +26,11 @@ NRF5x_BOARDS += nrf52840dk
 NRF5x_BOARDS += nrf52dk
 NRF5x_BOARDS += nrf52840-mdk
 
-# Kinetis boards
-KINETIS_BOARDS += frdm-kw41z
-KINETIS_BOARDS += frdm-k64f
-KINETIS_BOARDS += pba-d-01-kw2x
+# NXP boards
+NXP_BOARDS += frdm-kw41z
+NXP_BOARDS += frdm-k64f
+NXP_BOARDS += pba-d-01-kw2x
+NXP_BOARDS += mbed_lpc1768
 
 # TI boards
 TI_BOARDS += z1
@@ -40,7 +41,7 @@ RISC_BOARDS += hifive1b
 
 # All Boards
 CI_BOARDS += $(STM32_BOARDS)
-CI_BOARDS += $(KINETIS_BOARDS)
+CI_BOARDS += $(NXP_BOARDS)
 CI_BOARDS += $(NRF5x_BOARDS)
 CI_BOARDS += $(TI_BOARDS)
 CI_BOARDS += $(RISC_BOARDS)
