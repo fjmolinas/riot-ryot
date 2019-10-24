@@ -109,3 +109,8 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}==
 
 # remote-revb
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="ZOL-RM02-B1002281", SYMLINK+="riot/tty-remote-revb"
+
+# hifive-1b
+DEVPATH=="*:1.0/tty/ttyACM*" SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1051", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000979001207", SYMLINK+="riot/tty-hifive1b"
+# hifive-1b-esp32
+DEVPATH=="*:1.2/tty/ttyACM*" SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1051", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000979001207", SYMLINK+="riot/tty-hifive1b-esp32"

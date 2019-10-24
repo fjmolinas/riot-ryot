@@ -44,6 +44,9 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
   TI_BOARDS += z1
   TI_BOARDS += remote-revb
 
+  # RISC boards
+  RISC_BOARDS += hifive1b
+
   # All Boards
   LOCAL_BOARDS += $(STM32_BOARDS)
   LOCAL_BOARDS += $(NRF5x_BOARDS)
@@ -51,6 +54,7 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
   LOCAL_BOARDS += $(IOTLAB_BOARDS)
   LOCAL_BOARDS += $(ATMEL_BOARDS)
   LOCAL_BOARDS += $(TI_BOARDS)
+  LOCAL_BOARDS += $(RISC_BOARDS)
 
   # WARNING: the following handling will conflict with applications that have different
   # behaviours depending on the boar used
