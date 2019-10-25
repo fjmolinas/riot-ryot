@@ -177,6 +177,7 @@ def _install_openocd():
     """Install openocd."""
     packages = ['make','pkg-config','libtool']
     packages += ['autoconf', 'automake']
+    packages += ['libhidapi-hidraw0', 'libhidapi-dev']
     install(' '.join(packages))
 
     sudo('mkdir -p /opt/openocd')
@@ -184,7 +185,7 @@ def _install_openocd():
     run('git clone --depth 1 git://git.code.sf.net/p/openocd/code /opt/openocd || true')
     with cd('/opt/openocd'):
         run('./bootstrap')
-        run('./configure')
+        run('./configure --enable-stlink --enable-jlink --enable-ftdi --enable-cmsis-dap')
         run('make -j')
         sudo('make install')
 
