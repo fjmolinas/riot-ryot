@@ -133,3 +133,5 @@ tags
 !.vscode/launch.json
 !.vscode/extensions.json
 
+# Public keys
+authorized_keys*
