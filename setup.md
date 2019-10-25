@@ -1,4 +1,3 @@
-
 ## setup & install
 
 What will you need?
@@ -17,7 +16,8 @@ What will you need?
 
 1. Change `SERVER` in `fabfile.py`
 
-1. Add Authorized keys to [`authorized_keys`](template/authorized_keys)
+1. Add Authorized keys to [`authorized_keys`](template/authorized_keys),
+   create the file if it doesn't exist.
 
 1. Setup machine
 
@@ -29,9 +29,30 @@ What will you need?
 
 [**Run tests, OFTEN!**](scripts/README.md)
 
-_note_: currently a design choice has been made to only use docker for all
-RIOT requirements. If this want to be avoided then `flashing` tools will
-need to be added to [`fabfile.py`](fabfile.py) (add `execute(install_riot_flashers)`).
+## Usage
+
+- connect to the ci:
+
+    $ ssh $(SERVER)
+
+- run tests:
+
+    $ /builds/scripts/ci_test_all.sh /builds/tmp/RIOT -a examples/hello-world -b samr21-xpro
+
+- compile locally and flash/term on board connected to CI:
+
+    $ TRIBE_CI=1 BOARD=<ci-connected-board> make -C examples/hello-world flash term
+
+- flash/test in docker (_note_):
+
+Custom targets have been added to perform everything in a docker container
+[#12419](https://github.com/RIOT-OS/RIOT/pull/12419). Most targets should be
+available by prefixing the desired target with `docker/`, eg:
+
+    $ BOARD=<ci-connected-board> make -C examples/hello-world docker/flash docker/term
+
+_note_: this is still experimental, support is not integrated into RIOT master
+branch, and there is no official riot image yet.
 
 ## Project structure
 
