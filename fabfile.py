@@ -294,4 +294,5 @@ def setup():
     execute(configure_riot_flash_tool)
     execute(setup_ci_tools)
 
+    execute(install_riot_flashers)
     execute(get_dockertargets_mk)
