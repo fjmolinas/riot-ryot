@@ -48,6 +48,9 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
   # RISC boards
   RISC_BOARDS += hifive1b
 
+  # ARDUINO boards
+  ARDUINO_BOARDS += arduino-mega2560
+
   # All Boards
   LOCAL_BOARDS += $(STM32_BOARDS)
   LOCAL_BOARDS += $(NRF5x_BOARDS)
@@ -56,6 +59,7 @@ ifneq (1,$(DISABLE_LOCAL_BOARDS))
   LOCAL_BOARDS += $(ATMEL_BOARDS)
   LOCAL_BOARDS += $(TI_BOARDS)
   LOCAL_BOARDS += $(RISC_BOARDS)
+  LOCAL_BOARDS += $(ARDUINO_BOARDS)
 
   # WARNING: the following handling will conflict with applications that have different
   # behaviours depending on the boar used

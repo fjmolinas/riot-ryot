@@ -117,3 +117,6 @@ DEVPATH=="*:1.2/tty/ttyACM*" SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor
 
 # mbed_lpc1768
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="MBED", ATTRS{serial}=="10106025f8ce4f04b222618f3367bbc51327", SYMLINK+="riot/tty-mbed_lpc1768"
+
+# arduino-mega2560
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="2a03", ATTRS{idProduct}=="0042", ATTRS{manufacturer}=="Arduino Srl", ATTRS{serial}=="754333137393516102B1", SYMLINK+="riot/tty-arduino-mega2560"

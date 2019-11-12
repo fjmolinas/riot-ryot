@@ -39,12 +39,16 @@ TI_BOARDS += remote-revb
 # RISC boards
 RISC_BOARDS += hifive1b
 
+# ARDUINO boards
+ARDUINO_BOARDS += arduino-mega2560
+
 # All Boards
 CI_BOARDS += $(STM32_BOARDS)
 CI_BOARDS += $(NXP_BOARDS)
 CI_BOARDS += $(NRF5x_BOARDS)
 CI_BOARDS += $(TI_BOARDS)
 CI_BOARDS += $(RISC_BOARDS)
+CI_BOARDS += $(ARDUINO_BOARDS)
 
 CI_CONNECTED_BOARDS = $(filter $(CI_BOARDS),$(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*)))
 
