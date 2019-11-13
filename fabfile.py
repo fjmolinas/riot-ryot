@@ -115,6 +115,7 @@ def install_riot():
     packages += ['python3-serial', 'python3-pexpect']
     packages += ['python3-cryptography', 'python3-pyasn1',
                  'python3-ecdsa', 'python3-crypto']
+    packages += ['protobuf-compiler', 'python-protobuf']
     install(' '.join(packages))
 
     disable_dns_mask_for_docker()
