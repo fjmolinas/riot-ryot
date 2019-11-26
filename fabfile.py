@@ -136,9 +136,9 @@ def install_riot_flashers():
 def _install_jlink():
     """Install jlink."""
     with cd('/opt'):
-        sudo('wget --quiet --post-data \'accept_license_agreement=accepted&non_emb_ctr=confirmed&submit="Download software"\' https://www.segger.com/downloads/jlink/JLink_Linux_V650b_x86_64.deb')
-        sudo('dpkg --install JLink_Linux_V650b_x86_64.deb')
-        sudo('rm JLink_Linux_V650b_x86_64.deb')
+        sudo('wget --quiet --post-data \'accept_license_agreement=accepted&non_emb_ctr=confirmed&submit="Download software"\' https://www.segger.com/downloads/jlink/JLink_Linux_V654a_x86_64.deb')
+        sudo('dpkg --install JLink_Linux_V654c_x86_64.deb')
+        sudo('rm JLink_Linux_V654c_x86_64.deb')
 
 
 @task
