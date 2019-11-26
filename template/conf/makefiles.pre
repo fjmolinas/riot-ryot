@@ -35,6 +35,7 @@ NXP_BOARDS += mbed_lpc1768
 # TI boards
 TI_BOARDS += z1
 TI_BOARDS += remote-revb
+TI_BOARDS += openmote-b
 
 # RISC boards
 RISC_BOARDS += hifive1b
@@ -46,6 +47,9 @@ ARDUINO_BOARDS += arduino-uno
 # EFM32 boards
 EFM32_BOARDS += slstk3402a
 
+# Iotlab
+IOTLAB_BOARDS += iotlab-m3
+
 # All Boards
 CI_BOARDS += $(STM32_BOARDS)
 CI_BOARDS += $(NXP_BOARDS)
@@ -54,6 +58,7 @@ CI_BOARDS += $(TI_BOARDS)
 CI_BOARDS += $(RISC_BOARDS)
 CI_BOARDS += $(ARDUINO_BOARDS)
 CI_BOARDS += $(EFM32_BOARDS)
+CI_BOARDS += $(IOTLAB_BOARDS)
 
 CI_CONNECTED_BOARDS = $(filter $(CI_BOARDS),$(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*)))
 
