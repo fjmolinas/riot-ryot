@@ -128,4 +128,4 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="2341", ATTRS{idProduct}==
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="000440113873", SYMLINK+="riot/tty-slstk3402a"
 
 # openmote-b
-SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b"
+DEVPATH=="*:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b"
