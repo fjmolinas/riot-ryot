@@ -1,4 +1,3 @@
-
 # Always build in docker
 BUILD_IN_DOCKER = 1
 
@@ -16,3 +15,4 @@ DOCKER_TARGET_MAKE_ARGS += $(MAKE_PARALLEL)
 
 # Include docker targets while #12419 is not merged
 include $(CI_CONF_DIR)/dockertargets.inc.mk
+
