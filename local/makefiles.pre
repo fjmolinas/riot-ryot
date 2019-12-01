@@ -70,6 +70,11 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
   # behaviours depending on the boar used
   BOARD_NUMLESS := $(shell printf '%s' '${BOARD}' | sed -E -e 's/(.+)_[0-9]+$$/\1/')
 
+  LOCAL_BOARDS = $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*))
+
+  .PHONY: list-boards
+  list-boards: info-debug-variable-LOCAL_BOARDS
+
   ifneq (,$(findstring $(BOARD_NUMLESS),$(LOCAL_BOARDS)))
     # Common configuration, we need to evaluate inmediatly so it doesn't use the redefined board
     CFG_PORT := /dev/riot/tty-$(BOARD)
