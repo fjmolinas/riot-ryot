@@ -4,13 +4,15 @@
 
 ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
   # STM32 boards
-  STM32_BOARDS += p-l496g-cell02
   STM32_BOARDS += nucleo-l496zg
-  STM32_BOARDS += b-l475e-iot01a
   STM32_BOARDS += nucleo-l432kc
+  STM32_BOARDS += stm32l476rg-disco
+  STM32_BOARDS += p-l496g-cell02
+  STM32_BOARDS += b-l475e-iot01a
   STM32_BOARDS += nucleo-l152re
   STM32_BOARDS += nucleo-l073rz
   STM32_BOARDS += b-l072z-lrwan1
+  STM32_BOARDS += i-nucleo-lrwan1
   STM32_BOARDS += stm32l0538-disco
   STM32_BOARDS += nucleo-f767zi
   STM32_BOARDS += stm32f723e-disco
@@ -18,6 +20,7 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
   STM32_BOARDS += nucleo-f446re
   STM32_BOARDS += nucleo-f410rb
   STM32_BOARDS += nucleo-f303k8
+  STM32_BOARDS += nucleo-f303re
   STM32_BOARDS += nucleo-f334r8
   STM32_BOARDS += nucleo-f207zg
   STM32_BOARDS += nucleo-f103rb
@@ -39,10 +42,13 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
 
   # Atmel
   ATMEL_BOARDS += samr21-xpro
+  ATMEL_BOARDS += atmega256rfr2-xpro
+  ATMEL_BOARDS += hamilton
 
   # TI
   TI_BOARDS += z1
   TI_BOARDS += remote-revb
+  TI_BOARDS += ek-lm4f120xl
 
   # RISC boards
   RISC_BOARDS += hifive1b
@@ -76,7 +82,7 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
   list-boards: info-debug-variable-LOCAL_BOARDS
 
   ifneq (,$(findstring $(BOARD_NUMLESS),$(LOCAL_BOARDS)))
-    # Common configuration, we need to evaluate inmediatly so it doesn't use the redefined board
+    # Common configuration, we need to evaluate immediately so it doesn't use the redefined board
     CFG_PORT := /dev/riot/tty-$(BOARD)
     CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
 

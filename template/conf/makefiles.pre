@@ -4,19 +4,22 @@ CI_CONF_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 # than used in a build
 
 # STM32 boards
-STM32_BOARDS += p-l496g-cell02
 STM32_BOARDS += nucleo-l496zg
-STM32_BOARDS += b-l475e-iot01a
 STM32_BOARDS += nucleo-l432kc
+STM32_BOARDS += stm32l476rg-disco
+STM32_BOARDS += p-l496g-cell02
+STM32_BOARDS += b-l475e-iot01a
 STM32_BOARDS += nucleo-l152re
 STM32_BOARDS += nucleo-l073rz
 STM32_BOARDS += b-l072z-lrwan1
+STM32_BOARDS += i-nucleo-lrwan1
 STM32_BOARDS += nucleo-f767zi
 STM32_BOARDS += stm32f723e-disco
 STM32_BOARDS += nucleo-f746zg
 STM32_BOARDS += nucleo-f446re
 STM32_BOARDS += nucleo-f410rb
 STM32_BOARDS += nucleo-f303k8
+STM32_BOARDS += nucleo-f303re
 STM32_BOARDS += nucleo-f207zg
 STM32_BOARDS += nucleo-f103rb
 STM32_BOARDS += nucleo-f091rc
@@ -36,6 +39,7 @@ NXP_BOARDS += mbed_lpc1768
 TI_BOARDS += z1
 TI_BOARDS += remote-revb
 TI_BOARDS += openmote-b
+TI_BOARDS += ek-lm4f120xl
 
 # RISC boards
 RISC_BOARDS += hifive1b
@@ -51,6 +55,10 @@ EFM32_BOARDS += slstk3402a
 # Iotlab
 IOTLAB_BOARDS += iotlab-m3
 
+# Atmel
+ATMEL_BOARDS += samr21-xpro
+ATMEL_BOARDS += atmega256rfr2-xpro
+
 # All Boards
 CI_BOARDS += $(STM32_BOARDS)
 CI_BOARDS += $(NXP_BOARDS)
@@ -60,6 +68,7 @@ CI_BOARDS += $(RISC_BOARDS)
 CI_BOARDS += $(ARDUINO_BOARDS)
 CI_BOARDS += $(EFM32_BOARDS)
 CI_BOARDS += $(IOTLAB_BOARDS)
+CI_BOARDS += $(ATMEL_BOARDS)
 
 CI_CONNECTED_BOARDS = $(filter $(CI_BOARDS),$(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*)))
 

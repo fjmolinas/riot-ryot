@@ -35,11 +35,18 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 # nucleo-l432kc
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF535750877267204547", SYMLINK+="riot/tty-nucleo-l432kc"
 
+# nucleo-stm32l476rg-disco
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0666FF535550755187236026", SYMLINK+="riot/tty-stm32l476rg-disco"
+
 # nucleo-l152re
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066BFF485550755187074222", SYMLINK+="riot/tty-nucleo-l152re"
 
 # nucleo-l073rz
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF544852707267181129", SYMLINK+="riot/tty-nucleo-l073rz"
+
+# i-nucleo-lrwan1
+## This Board doesn't comme with an integrated programmer, it is wired to a STLINK-V2 programmer, which matches the serial
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066DFF485550755187043555", SYMLINK+="riot/tty-i-nucleo-lrwan1"
 
 # b-l072z-lrwan1
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0674FF535753845187212018", SYMLINK+="riot/tty-b-l072z-lrwan1"
@@ -67,6 +74,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 
 # nucleo-f303k8
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066BFF485550755187034424", SYMLINK+="riot/tty-nucleo-f303k8"
+
+# nucleo-f303re
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066DFF555654725187073815", SYMLINK+="riot/tty-nucleo-f303re"
 
 # nucleo-f207zg
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0668FF565251887067031833", SYMLINK+="riot/tty-nucleo-f207zg"
@@ -108,8 +118,17 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}==
 # samr21-xpro
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800004957", SYMLINK+="riot/tty-samr21-xpro"
 
+# atmega256rfr2-xpro
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML1784031800003040", SYMLINK+="riot/tty-atmega256rfr2-xpro"
+
+# hamilton
+SUBSYSTEM=="usb", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000269307832", SYMLINK+="riot/tty-hamilton"
+
 # z1
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="Z1RC1516", SYMLINK+="riot/tty-z1"
+
+# ek-lm4f120xl
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1cbe", ATTRS{idProduct}=="00fd", ATTRS{manufacturer}=="Texas Instruments", ATTRS{serial}=="0E1040B2", SYMLINK+="riot/tty-ek-lm4f120xl"
 
 # remote-revb
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="ZOL-RM02-B1002281", SYMLINK+="riot/tty-remote-revb"
