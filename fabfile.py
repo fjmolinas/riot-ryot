@@ -105,6 +105,8 @@ def install_common():
                 'aptitude', 'openjdk-8-jre-headless', 'tmux']
     packages += ['python3', 'python3-dev', 'python3-pip',
                  'python3-virtualenv']
+    # For script requiring python2
+    packages += ['python-pip']
     install(' '.join(packages))
 
 
@@ -115,7 +117,11 @@ def install_riot():
     packages += ['python3-serial', 'python3-pexpect']
     packages += ['python3-cryptography', 'python3-pyasn1',
                  'python3-ecdsa', 'python3-crypto']
+    packages += ['python3-cryptography', 'python3-pyasn1',
+                 'python3-ecdsa', 'python3-crypto']
     packages += ['protobuf-compiler', 'python-protobuf']
+    # Needed for goodfet.bsl
+    packages += ['python-serial']
     install(' '.join(packages))
 
     disable_dns_mask_for_docker()
