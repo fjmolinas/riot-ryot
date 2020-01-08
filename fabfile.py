@@ -208,10 +208,6 @@ def _install_py_flashers():
     """Install pyocd and esptool."""
     run('pip3 install pyocd esptool --user')
 
-    # HACK: currently it is using the one in esptoolchain by default, we do not
-    # esptoolchain in this image
-    append('/etc/environment','ESPTOOL=esptool.py',use_sudo=True)
-
 
 @task
 def disable_dns_mask_for_docker():
