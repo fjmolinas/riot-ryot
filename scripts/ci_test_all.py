@@ -74,7 +74,9 @@ import os
 import sys
 import argparse
 import subprocess
+import logging
 import compile_and_test_for_board
+import ci_aggregate
 
 
 def _ci_connected_boards(riot_directory):
@@ -110,25 +112,7 @@ def exec_compile_and_test_for_board(board, args):
     try:
         compile_and_test_for_board.main(args)
     except SystemExit:
-        print("Ignoring \'compile_and_test_for_board\' system exit")
-
-
-def print_results(results_dir, boards):
-    failuresummary = os.path.abspath(os.path.join(results_dir,
-                                                  'failuresummary.md'))
-    with open(failuresummary,"w+") as failuresummary_file:
-        for board in boards:
-            boards_result_dir = os.path.abspath(
-                                    os.path.join(results_dir,
-                                    '{}/failuresummary.md'.format(board))
-                                    )
-            with open(boards_result_dir) as board_failuresummary:
-                separator = "\n### {}/failuresummary\n\n".format(board)
-                failuresummary_file.write(separator)
-                for line in board_failuresummary:
-                    failuresummary_file.write(line)
-    with open(failuresummary,"r") as failuresummary_file:
-        print(failuresummary_file.read())
+        logging.info("Ignoring \'compile_and_test_for_board\' system exit")
 
 
 PARSER = argparse.ArgumentParser(
@@ -150,7 +134,7 @@ def test_boards():
 
     for board in boards:
         exec_compile_and_test_for_board(board, args)
-    print_results(args.result_directory, boards)
+    ci_aggregate.aggregate_results(args.result_directory, boards)
 
 
 if __name__ == '__main__':
