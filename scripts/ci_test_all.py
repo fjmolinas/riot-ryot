@@ -113,6 +113,8 @@ def exec_compile_and_test_for_board(board, args):
         compile_and_test_for_board.main(args)
     except SystemExit:
         logging.info("Ignoring \'compile_and_test_for_board\' system exit")
+    except ValueError:
+        logging.info("Ignoring \'compile_and_test_for_board\' value error")
 
 
 PARSER = argparse.ArgumentParser(
