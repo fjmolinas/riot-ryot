@@ -35,8 +35,8 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 # nucleo-l432kc
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF535750877267204547", SYMLINK+="riot/tty-nucleo-l432kc"
 
-# nucleo-stm32l476rg-disco
-SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0666FF535550755187236026", SYMLINK+="riot/tty-stm32l476rg-disco"
+# nucleo-stm32l476g-disco
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0666FF535550755187236026", SYMLINK+="riot/tty-stm32l476g-disco"
 
 # nucleo-l152re
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066BFF485550755187074222", SYMLINK+="riot/tty-nucleo-l152re"
