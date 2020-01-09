@@ -82,7 +82,7 @@ import ci_aggregate
 def _ci_connected_boards(riot_directory):
     """Get list of boards currently connected to the ci"""
     if os.environ['USER'] == 'ci':
-        cwd_dir = '/build/boards'
+        cwd_dir = '/builds/boards'
     else:
         cwd_dir = os.path.join(riot_directory, 'examples/hello-wolrd')
     cmd = [
