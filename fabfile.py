@@ -264,6 +264,22 @@ def setup_ci_tools():
     run('rm -rf /builds/scripts')
     put('scripts/', '/builds', mirror_local_mode=True)
     run('git init --bare ~/.gitcache')
+     # Add scripts locations to env
+    SCRIPTS_BASE = '/builds/scripts'
+    append(
+        '/etc/environment',
+        'PYTHONPATH=$PYTHONPATH:{}/'.format(SCRIPTS_BASE),
+        use_sudo=True
+        )
+    # Add compile_and_test_for_board to path
+    RIOTBASE = '/builds/boards/RIOT'
+    COMPILE_AND_TEST_FOR_BOARD = 'dist/tools/compile_and_test_for_board/'
+    append(
+        '/etc/environment',
+        'PYTHONPATH=$PYTHONPATH:{}/{}'
+                .format(RIOTBASE, COMPILE_AND_TEST_FOR_BOARD),
+        use_sudo=True
+        )
 
 
 @task
