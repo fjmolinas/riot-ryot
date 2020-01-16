@@ -1,0 +1,17 @@
+[Unit]
+Description=Reverse SSH connection
+After=network.target
+
+[Service]
+Type=simple
+User=ci
+Environment='RIOT_BASE=/builds/boards/RIOT' \
+            'SETUP_NWK=/dist/tools/ethos/setup_network.sh' \
+            'TRIVE_IPV6_PREFIX=' \
+            'TAP=riotci0'
+ExecStart=/usr/bin/ssh ${RIOT_BASE}${SETUP_NWK} ${TAP} ${LOCAL_IP6_PREFIX}::/64
+Restart=always
+RestartSec=60s
+
+[Install]
+WantedBy=default.target
