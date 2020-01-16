@@ -28,6 +28,9 @@ ifneq (,$(TRIBE_CI))
   # edbg redefines flash-recipe, override to handle that case
   override flash-recipe = $(ci-flash-recipe)
 
+  PREFLASHER = ssh
+  PREFFLAGS = $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) preflash'
+
   RESET              = ssh
   RESET_FLAGS        = $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) reset'
   override TERMPROG  = ssh
