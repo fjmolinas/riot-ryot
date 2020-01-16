@@ -20,10 +20,13 @@ ifneq (,$(TRIBE_CI))
   override FFLAGS = $(TRIBE_CI_SERVER) 'IMAGE_OFFSET=$(IMAGE_OFFSET) $(TRIBE_CI_MAKE) flash-only FLASHFILE=$(TRIBE_CI_FLASHFILE)'
   # Use rsync to honor remote permissions
   SSH_UPLOAD = rsync --chmod=ugo=rwX
-  define flash-recipe
+  define ci-flash-recipe
     $(SSH_UPLOAD) $(FLASHFILE) $(TRIBE_CI_SERVER):$(TRIBE_CI_FLASHFILE)
     $(FLASHER) $(FFLAGS)
   endef
+
+  # edbg redefines flash-recipe, override to handle that case
+  override flash-recipe = $(ci-flash-recipe)
 
   RESET              = ssh
   RESET_FLAGS        = $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) reset'
