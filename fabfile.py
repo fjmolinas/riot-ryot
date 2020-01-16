@@ -135,6 +135,7 @@ def install_riot_flashers():
     _install_py_flashers()
     _install_mspdebug()
     _install_openocd()
+    _install_edbg()
     _install_avrdude()
 
 
@@ -178,6 +179,11 @@ def _install_mspdebug():
         run('make -j')
         sudo('make install')
 
+@task
+def _install_edbg():
+    """Install mspdebug."""
+    packages = ['libudev-dev']
+    install(' '.join(packages))
 
 @task
 def _install_openocd():
