@@ -155,6 +155,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="2341", ATTRS{idProduct}==
 # arduino-due
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="2a03", ATTRS{idProduct}=="003d", ATTRS{manufacturer}=="Arduino (www.arduino.org)", ATTRS{serial}=="75430333137351E07201", SYMLINK+="riot/tty-arduino-due"
 
+# arduino-zero
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2157", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="00000000AZE000000166", SYMLINK+="riot/tty-arduino-zero"
+
 # slstk3402a
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="000440113873", SYMLINK+="riot/tty-slstk3402a"
 

@@ -48,6 +48,7 @@ RISC_BOARDS += hifive1b
 ARDUINO_BOARDS += arduino-mega2560
 ARDUINO_BOARDS += arduino-uno
 ARDUINO_BOARDS += arduino-due
+ARDUINO_BOARDS += arduino-zero
 
 # EFM32 boards
 EFM32_BOARDS += slstk3402a
