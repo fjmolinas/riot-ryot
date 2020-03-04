@@ -6,6 +6,7 @@ CI_CONF_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 # STM32 boards
 STM32_BOARDS += nucleo-l496zg
 STM32_BOARDS += nucleo-l432kc
+STM32_BOARDS += nucleo-l433rc
 STM32_BOARDS += stm32l476g-disco
 STM32_BOARDS += p-l496g-cell02
 STM32_BOARDS += b-l475e-iot01a
@@ -37,6 +38,7 @@ NXP_BOARDS += mbed_lpc1768
 
 # TI boards
 TI_BOARDS += z1
+TI_BOARDS += remote-reva
 TI_BOARDS += remote-revb
 TI_BOARDS += openmote-b
 TI_BOARDS += ek-lm4f120xl
