@@ -75,31 +75,20 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
   LOCAL_BOARDS += $(ARDUINO_BOARDS)
   LOCAL_BOARDS += $(EFM32_BOARDS)
 
-  # WARNING: the following handling will conflict with applications that have different
-  # behaviours depending on the boar used
-  BOARD_NUMLESS := $(shell printf '%s' '${BOARD}' | sed -E -e 's/(.+)_[0-9]+$$/\1/')
-
   LOCAL_BOARDS = $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*))
 
   .PHONY: list-boards
   list-boards: info-debug-variable-LOCAL_BOARDS
 
-  ifneq (,$(findstring $(BOARD_NUMLESS),$(LOCAL_BOARDS)))
-    # Common configuration, we need to evaluate immediately so it doesn't use the redefined board
-    CFG_PORT := /dev/riot/tty-$(BOARD)
-    CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
+  ifneq (,$(BOARD_INDEX))
+    CFG_PORT = /dev/riot/tty-$(BOARD)_$(BOARD_INDEX)
+  else
+    CFG_PORT = /dev/riot/tty-$(BOARD)
+  endif
+  CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
 
-    # If multiple boards where given then override and strip the board number
-    ifneq ($(BOARD),$(BOARD_NUMLESS))
-    # We do not use override which means BOARD must be set as an enviroment variable
-    # and not a MAKE variable
-    BOARD = $(BOARD_NUMLESS)
-    # We need to pass the BOARD variable to the docker environment since we are no longer
-    # setting BOARD threw the CMDLINE
-    DOCKER_ENVIRONMENT_CMDLINE += -e BOARD=$(BOARD)
-    endif
-
-    # Board specific configuration
+  # Board specific configuration
+  ifneq (,$(findstring $(BOARD),$(LOCAL_BOARDS)))
     PORT = $(CFG_PORT)
     DEBUG_ADAPTER_ID = $(CFG_PORT_DEBUG_ADAPTER_ID)
   endif

@@ -5,7 +5,7 @@
 ifneq (,$(TRIBE_CI))
   TRIBE_CI_SERVER ?= ci@ci-riot-tribe.saclay.inria.fr
   TRIBE_CI_DIR    ?= /builds/boards
-  TRIBE_CI_MAKE   ?= BOARD=$(BOARD) QUIET=0 make --no-print-directory -C $(TRIBE_CI_DIR)
+  TRIBE_CI_MAKE   ?= BOARD_INDEX=$(BOARD_INDEX) BOARD=$(BOARD) QUIET=0 make --no-print-directory -C $(TRIBE_CI_DIR)
   # Remote flashfile respects the extension (required for openocd)
   TRIBE_CI_FLASHFILE ?= $(TRIBE_CI_DIR)/bin/$(BOARD)_flashfile$(suffix $(FLASHFILE))
 

@@ -79,7 +79,12 @@ CI_CONNECTED_BOARDS = $(filter $(CI_BOARDS),$(patsubst /dev/riot/tty-%,%,$(wildc
 list-boards: info-debug-variable-CI_CONNECTED_BOARDS
 
 # Common configuration
-CFG_PORT = /dev/riot/tty-$(BOARD)
+
+ifneq (,$(BOARD_INDEX))
+  CFG_PORT = /dev/riot/tty-$(BOARD)_$(BOARD_INDEX)
+else
+  CFG_PORT = /dev/riot/tty-$(BOARD)
+endif
 CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
 
 # Board specific configuration
