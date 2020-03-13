@@ -62,6 +62,9 @@ IOTLAB_BOARDS += iotlab-m3
 ATMEL_BOARDS += samr21-xpro
 ATMEL_BOARDS += atmega256rfr2-xpro
 
+# ESP
+ESP_BOARDS += esp32-wroom-32
+
 # All Boards
 CI_BOARDS += $(STM32_BOARDS)
 CI_BOARDS += $(NXP_BOARDS)
@@ -72,6 +75,7 @@ CI_BOARDS += $(ARDUINO_BOARDS)
 CI_BOARDS += $(EFM32_BOARDS)
 CI_BOARDS += $(IOTLAB_BOARDS)
 CI_BOARDS += $(ATMEL_BOARDS)
+CI_BOARDS += $(ESP_BOARDS)
 
 CI_CONNECTED_BOARDS = $(filter $(CI_BOARDS),$(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*)))
 

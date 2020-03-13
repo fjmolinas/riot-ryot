@@ -64,6 +64,9 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
   # EFM32 boards
   EFM32_BOARDS += slstk3402a
 
+  # ESP
+  ESP_BOARDS += esp32-wroom-32
+
   # All Boards
   LOCAL_BOARDS += $(STM32_BOARDS)
   LOCAL_BOARDS += $(NRF5x_BOARDS)
@@ -74,6 +77,7 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
   LOCAL_BOARDS += $(RISC_BOARDS)
   LOCAL_BOARDS += $(ARDUINO_BOARDS)
   LOCAL_BOARDS += $(EFM32_BOARDS)
+  LOCAL_BOARDS += $(ESP_BOARDS)
 
   LOCAL_BOARDS = $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*))
 

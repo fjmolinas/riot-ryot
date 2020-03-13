@@ -174,3 +174,6 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}==
 
 # openmote-b
 DEVPATH=="*:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b"
+
+# esp32-wroom-32
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="0001", SYMLINK+="riot/tty-esp32-wroom-32"
