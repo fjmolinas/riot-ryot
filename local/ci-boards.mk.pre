@@ -3,9 +3,21 @@
 # e.g.: TRIBE_CI BOARD=nucleo-l152re make -C tests/xtimer_drift/ flash term
 # ===============================================
 ifneq (,$(TRIBE_CI))
+
+  TRIBE_CI_ENV_VARS += \
+    BOARD \
+    BOARD_INDEX \
+    RIOT_TERMINAL \
+    PROGRAMMER \
+    #
+
+  TRIBE_CI_CMDLINE_ENV_VARS := $(strip $(foreach varname,$(TRIBE_CI_ENV_VARS), \
+    $(if $(filter environment command,$(origin $(varname))), \
+    $(varname)=$($(varname)),)))
+
   TRIBE_CI_SERVER ?= ci@ci-riot-tribe.saclay.inria.fr
   TRIBE_CI_DIR    ?= /builds/boards
-  TRIBE_CI_MAKE   ?= BOARD_INDEX=$(BOARD_INDEX) BOARD=$(BOARD) QUIET=0 make --no-print-directory -C $(TRIBE_CI_DIR)
+  TRIBE_CI_MAKE   ?= $(TRIBE_CI_CMDLINE_ENV_VARS) QUIET=0 make --no-print-directory -C $(TRIBE_CI_DIR)
   # Remote flashfile respects the extension (required for openocd)
   TRIBE_CI_FLASHFILE ?= $(TRIBE_CI_DIR)/bin/$(BOARD)_flashfile$(suffix $(FLASHFILE))
 
