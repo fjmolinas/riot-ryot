@@ -120,6 +120,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}==
 # pba-d-01-kw2x
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="MBED", ATTRS{serial}=="02000203C3194E743EE5B38C", SYMLINK+="riot/tty-pba-d-01-kw2x"
 
+# usb-kw41z
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000000123456", SYMLINK+="riot/tty-usb-kw41z"
+
 # samr21-xpro
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800004957", SYMLINK+="riot/tty-samr21-xpro"
 

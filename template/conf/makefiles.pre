@@ -35,6 +35,7 @@ NXP_BOARDS += frdm-kw41z
 NXP_BOARDS += frdm-k64f
 NXP_BOARDS += pba-d-01-kw2x
 NXP_BOARDS += mbed_lpc1768
+NXP_BOARDS += usb-kw41z
 
 # TI boards
 TI_BOARDS += z1
