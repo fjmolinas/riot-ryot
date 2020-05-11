@@ -46,5 +46,10 @@ ifneq (,$(TRIBE_CI))
   RESET              = ssh
   RESET_FLAGS        = $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) reset'
   override TERMPROG  = ssh
-  override TERMFLAGS = -t $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) term'
+  ifneq (,$(filter term, $(MAKECMDGOALS)))
+    override TERMFLAGS = -t $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) term'
+  else
+    override TERMFLAGS = -t $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) cleanterm'
+  endif
+
 endif
