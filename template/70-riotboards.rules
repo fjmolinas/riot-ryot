@@ -124,7 +124,10 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}==
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000000123456", SYMLINK+="riot/tty-usb-kw41z"
 
 # samr21-xpro
-SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800004957", SYMLINK+="riot/tty-samr21-xpro"
+# samr21-xpro_0
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800004957", SYMLINK+="riot/tty-samr21-xpro", SYMLINK+="riot/tty-samr21-xpro_0"
+# samr21-xpro_1
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800011458", SYMLINK+="riot/tty-samr21-xpro", SYMLINK+="riot/tty-samr21-xpro_1"
 
 # atmega256rfr2-xpro
 # atmega256rfr2-xpro_0
