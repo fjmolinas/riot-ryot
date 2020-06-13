@@ -227,6 +227,7 @@ def disable_dns_mask_for_docker():
 def configure_udev():
     """Configure connected boards udev rules"""
     put('template/70-riotboards.rules', '/etc/udev/rules.d/', use_sudo=True)
+    put('template/70-tty.rules', '/etc/udev/rules.d/', use_sudo=True)
     sudo('udevadm control --reload')
 
 
