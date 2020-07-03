@@ -23,6 +23,9 @@
 # * The variables definition in
 #   /lib/udev/rules.d/60-serial.rules
 
+# p-nucleo-wb55
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0668FF3837334D4E43121921", SYMLINK+="riot/tty-p-nucleo-wb55"
+
 # nucleo-l496zg
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066EFF383930434B43222549", SYMLINK+="riot/tty-nucleo-l496zg"
 
@@ -128,6 +131,8 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}==
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800004957", SYMLINK+="riot/tty-samr21-xpro", SYMLINK+="riot/tty-samr21-xpro_0"
 # samr21-xpro_1
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800011458", SYMLINK+="riot/tty-samr21-xpro", SYMLINK+="riot/tty-samr21-xpro_1"
+# samr21-xpro_2
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2111", ATTRS{manufacturer}=="Atmel Corp.", ATTRS{serial}=="ATML2127031800004624", SYMLINK+="riot/tty-samr21-xpro", SYMLINK+="riot/tty-samr21-xpro_2"
 
 # atmega256rfr2-xpro
 # atmega256rfr2-xpro_0
