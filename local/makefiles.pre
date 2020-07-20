@@ -82,7 +82,7 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
   LOCAL_BOARDS += $(EFM32_BOARDS)
   LOCAL_BOARDS += $(ESP_BOARDS)
 
-  LOCAL_BOARDS = $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*))
+  LOCAL_BOARDS = $(sort $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*)))
 
   .PHONY: list-boards
   list-boards: info-debug-variable-LOCAL_BOARDS
