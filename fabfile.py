@@ -188,7 +188,7 @@ def _install_edbg():
 @task
 def _install_openocd():
     """Install openocd."""
-    packages = ['make','pkg-config','libtool']
+    packages = ['make', 'pkg-config', 'libtool']
     packages += ['autoconf', 'automake']
     packages += ['libhidapi-hidraw0', 'libhidapi-dev']
     install(' '.join(packages))
@@ -301,6 +301,31 @@ def get_dockertargets_mk():
 
 
 @task
+def setup_github_runner(token=None):
+    """Setups github runner"""
+    if token is None:
+        return
+    RUNNERS_NUMOFF = 7
+    for i in range(0, RUNNERS_NUMOFF):
+        directory = '/builds/actions-runner_{}'.format(i)
+        run('mkdir -p {}'.format(directory))
+        with cd(directory):
+            runner_url = 'https://github.com/actions/runner/releases/download/v2.267.1/actions-runner-linux-x64-2.267.1.tar.gz'
+            run('curl -O -L {}'.format(runner_url))
+            run('tar xzf ./actions-runner-linux-x64-2.267.1.tar.gz')
+            cmd = './config.sh'
+            cmd += ' --url https://github.com/fjmolinas/RIOT'
+            cmd += ' --token {}'.format(token)
+            cmd += ' --name ci-riot-tribe-{}'.format(i)
+            cmd += ' --unattended '
+            cmd += ' || true'
+            run(cmd)
+            sudo('./svc.sh install || true')
+            sudo('./svc.sh stop || true')
+            sudo('./svc.sh start')
+
+
+@task
 def setup():
     """Setup the whole server.
 
@@ -324,3 +349,5 @@ def setup():
 
     execute(install_riot_flashers)
     execute(get_dockertargets_mk)
+
+    execute(setup_github_runner)
