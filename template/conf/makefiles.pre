@@ -30,6 +30,7 @@ STM32_BOARDS += nucleo-f091rc
 NRF5x_BOARDS += nrf52840dk
 NRF5x_BOARDS += nrf52dk
 NRF5x_BOARDS += nrf52840-mdk
+NRF5x_BOARDS += dwm1001
 
 # NXP boards
 NXP_BOARDS += frdm-kw41z

@@ -32,6 +32,7 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(TRIBE_CI))
   NRF5x_BOARDS += nrf52840-mdk
   NRF5x_BOARDS += nrf52dk
   NRF5x_BOARDS += nrf52840dk
+  NRF5x_BOARDS += dwm1001
 
   # NXP Boards
   NXP_BOARDS += frdm-kw41z

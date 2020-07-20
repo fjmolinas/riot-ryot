@@ -101,7 +101,6 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}==
 ## iotlab-m3_2
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="IoT-LAB", ATTRS{product}=="M3", ATTRS{serial}=="TRIBE4441125307157002", SYMLINK+="riot/tty-iotlab-m3", SYMLINK+="riot/tty-iotlab-m3_2"
 
-
 # nrf52840-mdk
 ## nrf52840-mdk_0
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="ARM", ATTRS{serial}=="10260000033adcbb00000000000000000000000097969902", SYMLINK+="riot/tty-nrf52840-mdk", SYMLINK+="riot/tty-nrf52840-mdk_0"
@@ -113,6 +112,12 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}==
 
 # nrf52dk
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000682770831", SYMLINK+="riot/tty-nrf52dk"
+
+# dwm1001
+## dwm1001_0
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000760047303", SYMLINK+="riot/tty-dwm1001", SYMLINK+="riot/tty-dwm1001_0"
+## dwm1001_1
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000760048177", SYMLINK+="riot/tty-dwm1001", SYMLINK+="riot/tty-dwm1001_1"
 
 # frdm-kw41z
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000621000000", SYMLINK+="riot/tty-frdm-kw41z"
