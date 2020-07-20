@@ -12,7 +12,6 @@ optional arguments:
 """
 
 import os
-import sys
 import re
 import argparse
 
@@ -38,10 +37,12 @@ def list_from_string(list_str=None):
 
 
 def _board_results_in_dir(dir):
-        return next(os.walk(os.path.abspath(dir)))[1]
+    return next(os.walk(os.path.abspath(dir)))[1]
+
 
 def _append_board_to_test_location(text, board):
-    return re.sub(r'(\[.*\])(\()(.*\))',r"\1({}/\3".format(board), text)
+    return re.sub(r'(\[.*\])(\()(.*\))', r"\1({}/\3".format(board), text)
+
 
 def aggregate_results(results_dir, boards, echo=True):
     """Aggregate all results for boards presents in results_dir"""
@@ -49,12 +50,12 @@ def aggregate_results(results_dir, boards, echo=True):
         boards = _board_results_in_dir(results_dir)
     failuresummary = os.path.abspath(os.path.join(results_dir,
                                                   'failuresummary.md'))
-    with open(failuresummary,"w+") as failuresummary_file:
+    with open(failuresummary, "w+") as failuresummary_file:
         for board in boards:
             boards_result_dir = os.path.abspath(
-                                    os.path.join(results_dir,
-                                    '{}/failuresummary.md'.format(board))
-                                    )
+                                    os.path.join(
+                                        results_dir,
+                                        '{}/failuresummary.md'.format(board)))
             try:
                 with open(boards_result_dir) as board_failuresummary:
                     separator = "\n### {}/failuresummary\n\n".format(board)
@@ -64,9 +65,9 @@ def aggregate_results(results_dir, boards, echo=True):
                         failuresummary_file.write(line)
             except FileNotFoundError:
                 print("results for {} not found in results_dir {}"
-                      .format(board,results_dir))
+                      .format(board, results_dir))
     if echo is True:
-        with open(failuresummary,"r") as failuresummary_file:
+        with open(failuresummary, "r") as failuresummary_file:
             print(failuresummary_file.read())
 
 
