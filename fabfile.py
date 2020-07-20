@@ -197,6 +197,7 @@ def _install_openocd():
     sudo('chown ci:ci /opt/openocd')
     run('git clone --depth 1 git://git.code.sf.net/p/openocd/code /opt/openocd || true')
     with cd('/opt/openocd'):
+        run('git pull')
         run('./bootstrap')
         run('./configure --enable-stlink --enable-jlink --enable-ftdi --enable-cmsis-dap')
         run('make -j')
@@ -212,7 +213,7 @@ def _install_avrdude():
 @task
 def _install_py_flashers():
     """Install pyocd and esptool."""
-    run('pip3 install pyocd esptool --user')
+    sudo('pip3 install pyocd esptool')
 
 
 @task
