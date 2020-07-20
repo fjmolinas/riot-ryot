@@ -1,16 +1,12 @@
 
-## [`ci_test_all.sh`](ci_test_all.sh)
+## [`ci_test_all.py`](ci_test_all.py)
 
-Script to lunch tests on all board connected to the ci or on a subset of them.
-It is only executed on applications with a test script. It can be launched on a
-subset of these applications.
+This script handles executing `compile_and_test_for_board.py` for multiple
+boards.
 
-### Usage
+By default it will run on all BOARDs connected to the ci, unless `--boards` is
+specified.
 
-- connect to the ci:
+## [`ci_aggregate.py`](ci_aggregate.py)
 
-    $ ssh ci@ci-riot-tribe.saclay.inria.fr
-
-- run tests:
-
-    $ /builds/scripts/ci_test_all.sh /builds/tmp/RIOT -a examples/hello-world -b samr21-xpro
+Helper script to aggregate results generate by running `compile_and_test_for_board.py` in a loop.

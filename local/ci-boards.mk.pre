@@ -1,39 +1,39 @@
-# Use the 'tribe-ci' boards for flashing and testing
+# Use the 'ryot-ci' boards for flashing and testing
 #
-# e.g.: TRIBE_CI BOARD=nucleo-l152re make -C tests/xtimer_drift/ flash term
+# e.g.: RYOT_CI=1 BOARD=nucleo-l152re make -C tests/xtimer_drift/ flash term
 # ===============================================
-ifneq (,$(TRIBE_CI))
+ifneq (,$(RYOT_CI))
 
-  TRIBE_CI_ENV_VARS += \
+  RYOT_CI_ENV_VARS += \
     BOARD \
     BOARD_INDEX \
     RIOT_TERMINAL \
     PROGRAMMER \
     #
 
-  TRIBE_CI_CMDLINE_ENV_VARS := $(strip $(foreach varname,$(TRIBE_CI_ENV_VARS), \
+  RYOT_CI_CMDLINE_ENV_VARS := $(strip $(foreach varname,$(RYOT_CI_ENV_VARS), \
     $(if $(filter environment command,$(origin $(varname))), \
     $(varname)=$($(varname)),)))
 
-  TRIBE_CI_SERVER ?= ci@ci-riot-tribe.saclay.inria.fr
-  TRIBE_CI_DIR    ?= /builds/boards
-  TRIBE_CI_MAKE   ?= $(TRIBE_CI_CMDLINE_ENV_VARS) QUIET=0 make --no-print-directory -C $(TRIBE_CI_DIR)
+  RYOT_CI_SERVER ?= ci@ci-riot-tribe.saclay.inria.fr
+  RYOT_CI_DIR    ?= /builds/boards
+  RYOT_CI_MAKE   ?= $(RYOT_CI_CMDLINE_ENV_VARS) QUIET=0 make --no-print-directory -C $(RYOT_CI_DIR)
   # Remote flashfile respects the extension (required for openocd)
-  TRIBE_CI_FLASHFILE ?= $(TRIBE_CI_DIR)/bin/$(BOARD)_flashfile$(suffix $(FLASHFILE))
+  RYOT_CI_FLASHFILE ?= $(RYOT_CI_DIR)/bin/$(BOARD)_flashfile$(suffix $(FLASHFILE))
 
   list-ci-boards:
-	@ssh $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) list-boards'
+	@ssh $(RYOT_CI_SERVER) '$(RYOT_CI_MAKE) list-boards'
 
   # Flash must do the copy and flash
   #  * 'IMAGE_OFFSET' must be sent to to handle 'riotboot/flash-slotX'
   #  * 'FLASHFILE' is set from the command line to force the value
   # Set FLASHER to 'ssh' to not trigger compiling 'edbg'
   override FLASHER = ssh
-  override FFLAGS = $(TRIBE_CI_SERVER) 'IMAGE_OFFSET=$(IMAGE_OFFSET) $(TRIBE_CI_MAKE) flash-only FLASHFILE=$(TRIBE_CI_FLASHFILE)'
+  override FFLAGS = $(RYOT_CI_SERVER) 'IMAGE_OFFSET=$(IMAGE_OFFSET) $(RYOT_CI_MAKE) flash-only FLASHFILE=$(RYOT_CI_FLASHFILE)'
   # Use rsync to honor remote permissions
   SSH_UPLOAD = rsync --chmod=ugo=rwX
   define ci-flash-recipe
-    $(SSH_UPLOAD) $(FLASHFILE) $(TRIBE_CI_SERVER):$(TRIBE_CI_FLASHFILE)
+    $(SSH_UPLOAD) $(FLASHFILE) $(RYOT_CI_SERVER):$(RYOT_CI_FLASHFILE)
     $(FLASHER) $(FFLAGS)
   endef
 
@@ -41,15 +41,15 @@ ifneq (,$(TRIBE_CI))
   override flash-recipe = $(ci-flash-recipe)
 
   PREFLASHER = ssh
-  PREFFLAGS = $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) preflash'
+  PREFFLAGS = $(RYOT_CI_SERVER) '$(RYOT_CI_MAKE) preflash'
 
   RESET              = ssh
-  RESET_FLAGS        = $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) reset'
+  RESET_FLAGS        = $(RYOT_CI_SERVER) '$(RYOT_CI_MAKE) reset'
   override TERMPROG  = ssh
   ifneq (,$(filter term, $(MAKECMDGOALS)))
-    override TERMFLAGS = -t $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) term'
+    override TERMFLAGS = -t $(RYOT_CI_SERVER) '$(RYOT_CI_MAKE) term'
   else
-    override TERMFLAGS = -t $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) cleanterm'
+    override TERMFLAGS = -t $(RYOT_CI_SERVER) '$(RYOT_CI_MAKE) cleanterm'
   endif
 
 endif

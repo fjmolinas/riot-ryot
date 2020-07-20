@@ -14,7 +14,7 @@ What will you need?
 
     $ pip install requirements.txt
 
-1. Change `SERVER` in `fabfile.py`
+1. Change `RYOT_CI_SERVER` in `fabfile.py` and in [ci-boards.mk.pre](local/ci-boards.mk.pre)
 
 1. Add Authorized keys to [`authorized_keys`](template/authorized_keys),
    create the file if it doesn't exist.
@@ -33,15 +33,15 @@ What will you need?
 
 - connect to the ci:
 
-    $ ssh $(SERVER)
+    $ ssh $(RYOT_CI_SERVER)
 
 - run tests:
 
-    $ /builds/scripts/ci_test_all.sh /builds/tmp/RIOT -a examples/hello-world -b samr21-xpro
+    $ /builds/scripts/ci_test_all.py /builds/tmp/RIOT
 
-- compile locally and flash/term on board connected to CI:
+- compile locally and flash/term/test on board connected to CI:
 
-    $ TRIBE_CI=1 BOARD=<ci-connected-board> make -C examples/hello-world flash term
+    $ RYOT_CI=1 BOARD=<ci-connected-board> make -C examples/hello-world flash term
 
 - flash/test in docker (_note_):
 
@@ -80,10 +80,8 @@ branch, and there is no official riot image yet.
 
 ### scripts
 
-- [ci_test_all.sh](scripts/ci_test_all.sh): script to lunch tests on all board
-   connected to the ci or on a subset of them. It is only executed on
-   applications with a test script. It can be launched on a subset of these
-   applications.
+- [ci_test_all.pyt](scripts/ci_test_all.pyt): script to lunch tests on all board
+   connected to the ci or on a subset of them.
 
 ## boards-udev
 [boards-udev]: #boards-udev
@@ -114,3 +112,19 @@ branch, and there is no official riot image yet.
       I tried this manually, lets see if it survives a reboot
       `sudo setpci -H1 -d 8086:8c31 d0.l=0`
       https://www.systutorials.com/241533/how-to-force-a-usb-3-0-port-to-work-in-usb-2-0-mode-in-linux/
+
+
+## self hosted github runners
+
+You can setup your own runners to run `compile_and_test_for_board.py` in a
+GitHub Actions Workflow.
+
+#### setup
+
+1. [add a self hosted-runner](https://docs.github.com/en/actions/hosting-your-own-runners/adding-self-hosted-runners)
+1. optional: Repeat 1 if parallel builds are desired (e.g.: on a machine with 8 cores you
+   might want to configure 8 runners)
+1. optional: [Configure each individual runners as a service](https://docs.github.com/en/actions/hosting-your-own-runners/configuring-the-self-hosted-runner-application-as-a-service)
+1. Adapt the following [template](template/riot_ryot.yml) to your own RIOT fork `.github/workflows`
+1. Adapt [`max-parallel`](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstrategymax-parallel)
+and [`on`](https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#on).

@@ -5,10 +5,13 @@ from fabric.api import cd, env, execute, put, task, sudo, run, runs_once
 from fabric.contrib.files import sed, append
 
 
-SERVER = 'ci-riot-tribe.saclay.inria.fr'
+RYOT_CI_SERVER = 'ci-riot-tribe.saclay.inria.fr'
 
+GITHUB_RUNNER_NAME = 'ci-riot-tribe'
+GITHUB_RUNNER_VERSION = '2.267.1'
+RIOT_FORK = 'https://github.com/fjmolinas/RIOT'
 
-env.host_string = 'ci@{server}'.format(server=SERVER)
+env.host_string = 'ci@{server}'.format(server=RYOT_CI_SERVER)
 env.use_ssh_config = True
 
 @task
@@ -105,7 +108,7 @@ def install_common():
                 'aptitude', 'openjdk-8-jre-headless', 'tmux']
     packages += ['python3', 'python3-dev', 'python3-pip',
                  'python3-virtualenv']
-    # For script requiring python2
+    # For scripts requiring python2
     packages += ['python-pip']
     install(' '.join(packages))
 
@@ -272,7 +275,7 @@ def setup_ci_tools():
     run('rm -rf /builds/scripts')
     put('scripts/', '/builds', mirror_local_mode=True)
     run('git init --bare ~/.gitcache')
-     # Add scripts locations to env
+    # Add scripts locations to env
     SCRIPTS_BASE = '/builds/scripts'
     append(
         '/etc/environment',
@@ -301,22 +304,21 @@ def get_dockertargets_mk():
 
 
 @task
-def setup_github_runner(token=None):
-    """Setups github runner"""
+def setup_github_runner(token=None, runners=1):
+    """Setups github runner, doesn't run unless token is provided"""
     if token is None:
         return
-    RUNNERS_NUMOFF = 7
-    for i in range(0, RUNNERS_NUMOFF):
+    for i in range(0, runners):
         directory = '/builds/actions-runner_{}'.format(i)
         run('mkdir -p {}'.format(directory))
         with cd(directory):
-            runner_url = 'https://github.com/actions/runner/releases/download/v2.267.1/actions-runner-linux-x64-2.267.1.tar.gz'
+            runner_url = 'https://github.com/actions/runner/releases/download/v{}/actions-runner-linux-x64-{}.tar.gz'.format(GITHUB_RUNNER_VERSION, GITHUB_RUNNER_VERSION)
             run('curl -O -L {}'.format(runner_url))
-            run('tar xzf ./actions-runner-linux-x64-2.267.1.tar.gz')
+            run('tar xzf ./actions-runner-linux-x64-{}.tar.gz'.format(GITHUB_RUNNER_VERSION))
             cmd = './config.sh'
-            cmd += ' --url https://github.com/fjmolinas/RIOT'
+            cmd += ' --url {}'.format(RIOT_FORK)
             cmd += ' --token {}'.format(token)
-            cmd += ' --name ci-riot-tribe-{}'.format(i)
+            cmd += ' --name {}-{}'.format(GITHUB_RUNNER_NAME, i)
             cmd += ' --unattended '
             cmd += ' || true'
             run(cmd)
@@ -347,7 +349,7 @@ def setup():
     execute(configure_riot_flash_tool)
     execute(setup_ci_tools)
 
-    execute(install_riot_flashers)
+    # execute(install_riot_flashers)
     execute(get_dockertargets_mk)
 
     execute(setup_github_runner)

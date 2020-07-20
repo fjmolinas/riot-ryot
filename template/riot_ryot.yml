@@ -1,0 +1,82 @@
+# Run 'compile_and_test_for_board.py' on connected boards.
+#
+# Documentation:
+#
+# * Setup a RYOT machine:
+#   https://github.com/fjmolinas/riot-ryot/blob/master/setup.md
+# * Setup Runner:
+#    https://github.com/fjmolinas/riot-ryot/blob/master/setup.md#self-hosted-github-runners
+# * Setting up udev rules:
+#   http://riot-os.org/api/advanced-build-system-tricks.html#multiple-boards-udev
+
+name: riot-ryot
+
+on:
+  # Schedule weekly runs Saturday at 00:00 on master
+  schedule:
+    - cron: '00 0 * * 6'
+  push:
+    # Run on all pushes to master
+    branches:
+      - master
+    # Run on all new release candidates
+    tags:
+      - '*-RC*'
+
+jobs:
+  # Get all currently connected boards
+  connected_boards:
+    name: Get Connected Boards
+    runs-on: self-hosted
+    env:
+      RIOT_MAKEFILES_GLOBAL_PRE: /builds/conf/makefiles.pre
+    outputs:
+      boards: ${{ steps.list-boards.outputs.boards }}
+    steps:
+      - id: list-boards
+        run: echo "::set-output name=boards::$(make -C /builds/boards/ list-boards-json --no-print-directory)"
+
+  # Runs all tests on connected boards
+  compile_and_test_for_board:
+    name: ${{ matrix.board }}
+    runs-on: self-hosted
+    needs: connected_boards
+    continue-on-error: true
+    # max-parallel can be increased depending on the numbers of self-hosted runners
+    strategy:
+      max-parallel: 1
+      matrix:
+        board: ${{fromJson(needs.connected_boards.outputs.boards)}}
+    env:
+      BUILD_IN_DOCKER: 1
+      RIOT_MAKEFILES_GLOBAL_PRE: /builds/conf/makefiles.pre
+      COMPILE_AND_TEST_FOR_BOARD: ./dist/tools/compile_and_test_for_board/compile_and_test_for_board.py
+      COMPILE_AND_TEST_ARGS: --with-test-only --incremental --clean-after
+    steps:
+    - name: Checkout RIOT
+      uses: actions/checkout@v2
+    - name: Run compile_and_test_for_board.py
+      run: ${COMPILE_AND_TEST_FOR_BOARD} . ${{ matrix.board }} results ${COMPILE_AND_TEST_ARGS}
+    - name: Archive results
+      if: always()
+      # Store all generated results to same 'results' artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: results
+        path: results
+
+  # Aggregate all boards results
+  results_summary:
+    name: Results Summary
+    needs: compile_and_test_for_board
+    runs-on: self-hosted
+    steps:
+      - name: Download all results
+        uses: actions/download-artifact@v2
+        # Download all artifacts to results
+        with:
+          name: results
+          path: results
+      - name: Aggregate Results
+        shell: bash
+        run: python /builds/scripts/ci_aggregate.py results

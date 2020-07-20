@@ -51,25 +51,27 @@ machine remotely [`makefiles.pre`](local/ci-boards.mk.pre).
 
 ```
   override FLASHER = ssh
-  override FFLAGS = $(TRIBE_CI_SERVER) 'IMAGE_OFFSET=$(IMAGE_OFFSET) \
-    $(TRIBE_CI_MAKE) flash-only FLASHFILE=$(TRIBE_CI_FLASHFILE)'
+  override FFLAGS = $(RYOT_CI_SERVER) 'IMAGE_OFFSET=$(IMAGE_OFFSET) \
+    $(RYOT_CI_MAKE) flash-only FLASHFILE=$(RYOT_CI_FLASHFILE)'
   SSH_UPLOAD = rsync --chmod=ugo=rwX
 
   define flash-recipe
-    $(SSH_UPLOAD) $(FLASHFILE) $(TRIBE_CI_SERVER):$(TRIBE_CI_FLASHFILE)
+    $(SSH_UPLOAD) $(FLASHFILE) $(RYOT_CI_SERVER):$(RYOT_CI_FLASHFILE)
     $(FLASHER) $(FFLAGS)
   endef
 
   RESET              = ssh
-  RESET_FLAGS        = $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) reset'
+  RESET_FLAGS        = $(RYOT_CI_SERVER) '$(RYOT_CI_MAKE) reset'
   override TERMPROG  = ssh
-  override TERMFLAGS = -t $(TRIBE_CI_SERVER) '$(TRIBE_CI_MAKE) term'
+  override TERMFLAGS = -t $(RYOT_CI_SERVER) '$(RYOT_CI_MAKE) term'
 ```
+
+### Usage Example
 
 `tribe` team in Inria has 20+ boards and for a developer flashing on any 
 board is as easy as:
 
-    CI_RIOT_TRIBE=1 BOARD=<board> make -C examples/hello-world flash test
+    RYOT_CI=1 BOARD=<board> make -C examples/hello-world flash test
 
 ## [Setup](setup.md)
 
@@ -79,3 +81,4 @@ For install, setup and project details refer to [setup.md](setup.md).
 
 - Find a way to share results easy
 - Publish an official riot Docker flash or all-in-one image
+- Always flash in docker

@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 """
-This script handled executing \'compile_and_test_for_board\' for multiple
+This script handles executing \'compile_and_test_for_board\' for multiple
 boards generating results.
 
 It inherits the documentation for \'compile_and_test_for_board\' arguments
