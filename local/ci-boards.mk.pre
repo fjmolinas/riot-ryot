@@ -21,8 +21,13 @@ ifneq (,$(RYOT_CI))
   # Remote flashfile respects the extension (required for openocd)
   RYOT_CI_FLASHFILE ?= $(RYOT_CI_DIR)/bin/$(BOARD)_flashfile$(suffix $(FLASHFILE))
 
+  .PHONY: list-ci-boards list-ci-boards-json
+
   list-ci-boards:
 	@ssh $(RYOT_CI_SERVER) '$(RYOT_CI_MAKE) list-boards'
+
+  list-ci-boards-json:
+	@ssh $(RYOT_CI_SERVER) '$(RYOT_CI_MAKE) list-boards-json'
 
   # Flash must do the copy and flash
   #  * 'IMAGE_OFFSET' must be sent to to handle 'riotboot/flash-slotX'
