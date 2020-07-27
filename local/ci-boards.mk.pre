@@ -17,7 +17,7 @@ ifneq (,$(RYOT_CI))
 
   RYOT_CI_SERVER ?= ci@ci-riot-tribe.saclay.inria.fr
   RYOT_CI_DIR    ?= /builds/boards
-  RYOT_CI_MAKE   ?= $(RYOT_CI_CMDLINE_ENV_VARS) QUIET=0 make --no-print-directory -C $(RYOT_CI_DIR)
+  RYOT_CI_MAKE   ?= $(RYOT_CI_CMDLINE_ENV_VARS) QUIET=1 make --no-print-directory -C $(RYOT_CI_DIR)
   # Remote flashfile respects the extension (required for openocd)
   RYOT_CI_FLASHFILE ?= $(RYOT_CI_DIR)/bin/$(BOARD)_flashfile$(suffix $(FLASHFILE))
 
