@@ -12,7 +12,7 @@ ifneq (,$(RYOT_CI))
     #
 
   RYOT_CI_CMDLINE_ENV_VARS := $(strip $(foreach varname,$(RYOT_CI_ENV_VARS), \
-    $(if $(filter environment command,$(origin $(varname))), \
+    $(if $(filter file environment command,$(origin $(varname))), \
     $(varname)=$($(varname)),)))
 
   RYOT_CI_SERVER ?= ci@ci-riot-tribe.saclay.inria.fr

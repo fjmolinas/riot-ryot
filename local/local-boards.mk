@@ -26,6 +26,10 @@ STM32_BOARDS += nucleo-f334r8
 STM32_BOARDS += nucleo-f207zg
 STM32_BOARDS += nucleo-f103rb
 STM32_BOARDS += nucleo-f091rc
+STM32_BOARDS += nucleo-f042k6
+STM32_BOARDS += nucleo-f072rb
+STM32_BOARDS += nucleo-f070rb
+STM32_BOARDS += nucleo-f030r8
 
 # NRF2 Boards
 NRF5x_BOARDS += nrf52840-mdk
@@ -45,6 +49,7 @@ IOTLAB_BOARDS += iotlab-m3
 
 # Atmel
 ATMEL_BOARDS += samr21-xpro
+ATMEL_BOARDS += samr34-xpro
 ATMEL_BOARDS += atmega256rfr2-xpro
 ATMEL_BOARDS += hamilton
 
