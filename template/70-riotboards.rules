@@ -26,6 +26,9 @@
 # p-nucleo-wb55
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0668FF3837334D4E43121921", SYMLINK+="riot/tty-p-nucleo-wb55"
 
+# nucleo-l4r5zi
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066EFF504955857567074131", SYMLINK+="riot/tty-nucleo-l4r5zi"
+
 # nucleo-l496zg
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066EFF383930434B43222549", SYMLINK+="riot/tty-nucleo-l496zg"
 
@@ -34,6 +37,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 
 # b-l475e-iot01a
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066DFF555051897267233646", SYMLINK+="riot/tty-b-l475e-iot01a"
+
+# nucleo-l452re
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066FFF535155878281031629", SYMLINK+="riot/tty-nucleo-l452re"
 
 # nucleo-l432kc
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF535750877267204547", SYMLINK+="riot/tty-nucleo-l432kc"
@@ -134,7 +140,7 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}==
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000760048903", SYMLINK+="riot/tty-dwm1001", SYMLINK+="riot/tty-dwm1001_2"
 
 # frdm-kw41z
-SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000621000000", SYMLINK+="riot/tty-frdm-kw41z"
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000621000000", ATTRS{product}=="J-Link", SYMLINK+="riot/tty-frdm-kw41z"
 
 # frdm-k64f
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="ARM", ATTRS{serial}=="0240000047784e4500329003d745001fddb1000097969900", SYMLINK+="riot/tty-frdm-k64f"
@@ -143,7 +149,7 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}==
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0d28", ATTRS{idProduct}=="0204", ATTRS{manufacturer}=="MBED", ATTRS{serial}=="02000203C3194E743EE5B38C", SYMLINK+="riot/tty-pba-d-01-kw2x"
 
 # usb-kw41z
-SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000000123456", SYMLINK+="riot/tty-usb-kw41z"
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000621000000", SYMLINK+="riot/tty-usb-kw41z"
 
 # samr21-xpro
 # samr21-xpro_0
@@ -207,6 +213,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}==
 
 # openmote-b
 DEVPATH=="*:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b"
+
+# cc2538dk
+DEVPATH=="*:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="a6d1", ATTRS{manufacturer}=="TI", SYMLINK+="riot/tty-cc2538dk"
 
 # esp32-wroom-32
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="0001", SYMLINK+="riot/tty-esp32-wroom-32"

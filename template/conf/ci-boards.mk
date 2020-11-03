@@ -4,7 +4,9 @@
 
 # STM32 boards
 STM32_BOARDS += p-nucleo-wb55
+STM32_BOARDS += nucleo-l4r5zi
 STM32_BOARDS += nucleo-l496zg
+STM32_BOARDS += nucleo-l452re
 STM32_BOARDS += nucleo-l432kc
 STM32_BOARDS += nucleo-l433rc
 STM32_BOARDS += stm32l476g-disco
@@ -19,6 +21,7 @@ STM32_BOARDS += stm32f723e-disco
 STM32_BOARDS += nucleo-f746zg
 STM32_BOARDS += nucleo-f446re
 STM32_BOARDS += nucleo-f410rb
+STM32_BOARDS += nucleo-f334r8
 STM32_BOARDS += nucleo-f303k8
 STM32_BOARDS += nucleo-f303re
 STM32_BOARDS += nucleo-f207zg

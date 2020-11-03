@@ -4,7 +4,9 @@
 
 # STM32 boards
 STM32_BOARDS += p-nucleo-wb55
+STM32_BOARDS += nucleo-l4r5zi
 STM32_BOARDS += nucleo-l496zg
+STM32_BOARDS += nucleo-l452re
 STM32_BOARDS += nucleo-l432kc
 STM32_BOARDS += nucleo-l433rc
 STM32_BOARDS += stm32l476g-disco
@@ -58,6 +60,7 @@ TI_BOARDS += z1
 TI_BOARDS += remote-reva
 TI_BOARDS += remote-revb
 TI_BOARDS += ek-lm4f120xl
+TI_BOARDS += cc2538dk
 
 # RISC boards
 RISC_BOARDS += hifive1b
