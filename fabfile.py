@@ -110,9 +110,6 @@ def install_common():
                 'aptitude', 'openjdk-8-jre-headless', 'tmux']
     packages += ['python3', 'python3-dev', 'python3-pip',
                  'python3-virtualenv']
-    # For scripts requiring python2
-    packages += ['python-pip']
-    install(' '.join(packages))
 
 
 @task
