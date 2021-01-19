@@ -20,6 +20,7 @@ STM32_BOARDS += stm32l0538-disco
 STM32_BOARDS += nucleo-f767zi
 STM32_BOARDS += stm32f723e-disco
 STM32_BOARDS += nucleo-f746zg
+STM32_BOARDS += stm32f429i-disc1
 STM32_BOARDS += nucleo-f446re
 STM32_BOARDS += nucleo-f410rb
 STM32_BOARDS += nucleo-f303k8

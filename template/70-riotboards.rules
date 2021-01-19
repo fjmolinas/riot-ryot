@@ -75,6 +75,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 # nucleo-f746zg
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF485550755187064051", SYMLINK+="riot/tty-nucleo-f746zg"
 
+# stm32f429i-disc1
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066CFF504955857567201822", SYMLINK+="riot/tty-stm32f429i-disc1"
+
 # nucleo-f446re
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF485457725187123744", SYMLINK+="riot/tty-nucleo-f446re"
 

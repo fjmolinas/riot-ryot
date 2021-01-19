@@ -26,4 +26,5 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(RYOT_CI))
     PORT = $(CFG_PORT)
     DEBUG_ADAPTER_ID = $(CFG_PORT_DEBUG_ADAPTER_ID)
   endif
+
 endif
