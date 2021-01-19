@@ -14,6 +14,8 @@ RIOT_FORK = 'https://github.com/fjmolinas/RIOT'
 env.host_string = 'ci@{server}'.format(server=RYOT_CI_SERVER)
 env.use_ssh_config = True
 
+JLINK_VERSION = 'V688a'
+
 @task
 def hello_world():
     """Check we can run a command on the server."""
@@ -140,16 +142,18 @@ def install_riot_flashers():
     _install_openocd()
     _install_edbg()
     _install_avrdude()
+    _install_jlink()
 
 
 @task
 def _install_jlink():
     """Install jlink."""
     with cd('/opt'):
-        sudo('wget --quiet --post-data \'accept_license_agreement=accepted&non_emb_ctr=confirmed&submit="Download software"\' https://www.segger.com/downloads/jlink/JLink_Linux_V654a_x86_64.deb')
-        sudo('dpkg --install JLink_Linux_V654c_x86_64.deb')
-        sudo('rm JLink_Linux_V654c_x86_64.deb')
-
+        deb = 'JLink_Linux_{}_x86_64.deb'.format(JLINK_VERSION)
+        url = 'https://www.segger.com/downloads/jlink/{}'.format(deb)
+        sudo('wget --quiet --post-data \'accept_license_agreement=accepted&non_emb_ctr=confirmed&submit="Download software"\' {}'.format(url))
+        sudo('dpkg --install {}'.format(deb))
+        sudo('rm {}'.format(deb))
 
 @task
 def _install_uniflash():
@@ -349,7 +353,7 @@ def setup():
     execute(configure_riot_flash_tool)
     execute(setup_ci_tools)
 
-    # execute(install_riot_flashers)
+    execute(install_riot_flashers)
     execute(get_dockertargets_mk)
 
-    execute(setup_github_runner)
+    # execute(setup_github_runner)
