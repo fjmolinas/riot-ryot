@@ -155,8 +155,8 @@ def _install_jlink():
 @task
 def _install_uniflash():
     """Install uniflash."""
-    packages = ['libnotify4','libcanberra0','libpython2.7',
-                'libgconf2-4','libusb-dev']
+    packages = ['libc6:i386', 'libusb-0.1-4', 'libgconf-2-4',
+                'libncurses5', 'libpython2.7', 'libtinfo5']
     install(' '.join(packages))
 
     with cd('/opt'):
