@@ -23,6 +23,9 @@
 # * The variables definition in
 #   /lib/udev/rules.d/60-serial.rules
 
+# nucleo-g474re
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="005600333137510839383538", SYMLINK+="riot/tty-nucleo-g474re"
+
 # p-nucleo-wb55
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0668FF3837334D4E43121921", SYMLINK+="riot/tty-p-nucleo-wb55"
 
