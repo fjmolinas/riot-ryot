@@ -8,23 +8,40 @@ ifeq (,$(DISABLE_LOCAL_BOARDS)$(RYOT_CI))
   # Include all locally configured boards
   include $(LOCAL_CONF_DIR)/local-boards.mk
 
+  # Overrite default board configurations
+  include $(LOCAL_CONF_DIR)/local-boards-configs.mk
+
   # Filter out LOCAL_BOARDS that are not connected
   LOCAL_CONNECTED_BOARDS = $(sort $(patsubst /dev/riot/tty-%,%,$(wildcard /dev/riot/tty-*)))
 
   .PHONY: list-boards
   list-boards: info-debug-variable-LOCAL_CONNECTED_BOARDS
 
-  ifneq (,$(BOARD_INDEX))
-    CFG_PORT = /dev/riot/tty-$(BOARD)_$(BOARD_INDEX)
+  # Common configuration
+  CFG_PORT_BASE ?= /dev/riot/tty-$(BOARD)
+  CFG_PROG_BASE ?= /dev/riot/$(PROGRAMMER)-$(BOARD)
+  ifneq (,$(wildcard $(CFG_PORT_BASE)_$(BOARD_INDEX)))
+    CFG_PORT ?= $(CFG_PORT_BASE)_$(BOARD_INDEX)
   else
-    CFG_PORT = /dev/riot/tty-$(BOARD)
+    CFG_PORT ?= $(CFG_PORT_BASE)
   endif
-  CFG_PORT_DEBUG_ADAPTER_ID = $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
+  ifneq (,$(wildcard $(CFG_PROG_BASE)_$(BOARD_INDEX)))
+    CFG_PROG ?= $(CFG_PROG_BASE)_$(BOARD_INDEX)
+  else
+    CFG_PROG ?= $(CFG_PROG_BASE)
+  endif
+
+  # Use progammer serial if it exists
+  ifneq (,$(wildcard $(CFG_PROG)))
+    CFG_DEBUG_ADAPTER_ID ?= $(shell udevadm info -q property $(CFG_PROG) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
+  else
+    CFG_DEBUG_ADAPTER_ID ?= $(shell udevadm info -q property $(CFG_PORT) | sed -n '/ID_SERIAL_SHORT/ {s/ID_SERIAL_SHORT=//p}')
+  endif
 
   # Board specific configuration
   ifneq (,$(findstring $(BOARD),$(LOCAL_CONNECTED_BOARDS)))
     PORT = $(CFG_PORT)
-    DEBUG_ADAPTER_ID = $(CFG_PORT_DEBUG_ADAPTER_ID)
+    DEBUG_ADAPTER_ID = $(CFG_DEBUG_ADAPTER_ID)
   endif
 
 endif

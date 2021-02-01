@@ -23,6 +23,16 @@
 # * The variables definition in
 #   /lib/udev/rules.d/60-serial.rules
 
+# How to find out about udev attributes of device:
+# Connect J-Link to PC
+# Terminal: cat /var/log/syslog
+# Find path to where J-Link device has been "mounted"
+# sudo udevadm info --query=all --attribute-walk --path=<PathExtractedFromSyslog>
+# sudo udevadm info --attribute-walk /dev/bus/usb/<Bus>/<Device> (extract <Bus> and <Device> from "lsusb")
+# Reload udev rules after rules file change:
+#   sudo udevadm control --reload-rules
+#   sudo udevadm trigger
+
 # nucleo-g474re
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="005600333137510839383538", SYMLINK+="riot/tty-nucleo-g474re"
 
@@ -218,7 +228,18 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}==
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="Silicon Labs", ATTRS{serial}=="000440113873", SYMLINK+="riot/tty-slstk3402a"
 
 # openmote-b
-DEVPATH=="*:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b"
+## openmote-b_0
+DEVPATH=="*/2-1.5.2:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_0", SYMLINK+="riot/tty-openmote-b"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019486", SYMLINK+="riot/jlink-openmote-b", SYMLINK+="riot/jlink-openmote-b_0"
+## openmote-b_1
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019485", SYMLINK+="riot/jlink-openmote-b", SYMLINK+="riot/jlink-openmote-b_1"
+DEVPATH=="*/2-1.5.4:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_1", SYMLINK+="riot/tty-openmote-b"
+## openmote-b_2
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019191", SYMLINK+="riot/jlink-openmote-b", SYMLINK+="riot/jlink-openmote-b_2"
+DEVPATH=="*/2-1.5.5.2:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_2", SYMLINK+="riot/tty-openmote-b"
+## openmote-b_3
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019159", SYMLINK+="riot/jlink-openmote-b", SYMLINK+="riot/jlink-openmote-b_3"
+DEVPATH=="*/2-1.5.5.6:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_3", SYMLINK+="riot/tty-openmote-b"
 
 # cc2538dk
 DEVPATH=="*:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="a6d1", ATTRS{manufacturer}=="TI", SYMLINK+="riot/tty-cc2538dk"
