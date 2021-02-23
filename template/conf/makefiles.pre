@@ -1,5 +1,9 @@
 CI_CONF_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
+# Allways use BINFILE used for flashing, but not always a dependency
+# if flash-only is used and RIOT_CI_BUILD is set
+BUILD_FILES += $(BINFILE)
+
 # Include all locally configured boards
 include $(CI_CONF_DIR)/ci-boards.mk
 

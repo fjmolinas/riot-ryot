@@ -235,14 +235,14 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}==
 DEVPATH=="*/2-1.5.2:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_0", SYMLINK+="riot/tty-openmote-b"
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019486", SYMLINK+="riot/jlink-openmote-b", SYMLINK+="riot/jlink-openmote-b_0"
 ## openmote-b_1
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019485", SYMLINK+="riot/jlink-openmote-b", SYMLINK+="riot/jlink-openmote-b_1"
-DEVPATH=="*/2-1.5.4:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_1", SYMLINK+="riot/tty-openmote-b"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019485", SYMLINK+="riot/jlink-openmote-b_1"
+DEVPATH=="*/2-1.5.4:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_1"
 ## openmote-b_2
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019191", SYMLINK+="riot/jlink-openmote-b", SYMLINK+="riot/jlink-openmote-b_2"
-DEVPATH=="*/2-1.5.5.2:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_2", SYMLINK+="riot/tty-openmote-b"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019191", SYMLINK+="riot/jlink-openmote-b_2"
+DEVPATH=="*/2-1.5.5.2:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_2"
 ## openmote-b_3
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019159", SYMLINK+="riot/jlink-openmote-b", SYMLINK+="riot/jlink-openmote-b_3"
-DEVPATH=="*/2-1.5.5.6:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_3", SYMLINK+="riot/tty-openmote-b"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0101", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000801019159", SYMLINK+="riot/jlink-openmote-b_3"
+DEVPATH=="*/2-1.5.5.6:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", ATTRS{manufacturer}=="FTDI", SYMLINK+="riot/tty-openmote-b_3"
 
 # cc2538dk
 DEVPATH=="*:1.1/ttyUSB*/tty/ttyUSB*", SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="a6d1", ATTRS{manufacturer}=="TI", SYMLINK+="riot/tty-cc2538dk"
