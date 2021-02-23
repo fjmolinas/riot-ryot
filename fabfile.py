@@ -305,7 +305,7 @@ def get_dockertargets_mk():
 
 
 @task
-def setup_github_runner(token=None, runners=1):
+def setup_github_runner(token=None, runners=7):
     """Setups github runner, doesn't run unless token is provided"""
     if token is None:
         return
@@ -353,4 +353,4 @@ def setup():
     execute(install_riot_flashers)
     execute(get_dockertargets_mk)
 
-    # execute(setup_github_runner)
+    execute(setup_github_runner)
