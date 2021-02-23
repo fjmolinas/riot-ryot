@@ -36,6 +36,9 @@
 # nucleo-g474re
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="005600333137510839383538", SYMLINK+="riot/tty-nucleo-g474re"
 
+# nucleo-g071rb
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066FFF343135485043175029", SYMLINK+="riot/tty-nucleo-g071rb"
+
 # p-nucleo-wb55
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0668FF3837334D4E43121921", SYMLINK+="riot/tty-p-nucleo-wb55"
 

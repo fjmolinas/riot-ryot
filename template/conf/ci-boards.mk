@@ -4,6 +4,7 @@
 
 # STM32 boards
 STM32_BOARDS += nucleo-g474re
+STM32_BOARDS += nucleo-g071rb
 STM32_BOARDS += p-nucleo-wb55
 STM32_BOARDS += nucleo-l4r5zi
 STM32_BOARDS += nucleo-l496zg
@@ -44,7 +45,6 @@ NXP_BOARDS += frdm-kw41z
 NXP_BOARDS += frdm-k64f
 NXP_BOARDS += pba-d-01-kw2x
 NXP_BOARDS += mbed_lpc1768
-NXP_BOARDS += usb-kw41z
 
 # TI boards
 TI_BOARDS += z1
