@@ -9,6 +9,7 @@ ifneq (,$(RYOT_CI))
     BOARD_INDEX \
     RIOT_TERMINAL \
     PROGRAMMER \
+    PROGRAMMER_QUIET \
     #
 
   RYOT_CI_CMDLINE_ENV_VARS := $(strip $(foreach varname,$(RYOT_CI_ENV_VARS), \
