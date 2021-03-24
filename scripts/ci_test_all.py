@@ -109,12 +109,13 @@ def _get_boards(args):
 def exec_compile_and_test_for_board(board, args):
     """Execute \'compile_and_test_for_board\' for one BOARD"""
     setattr(args, 'board', board)
+    logger = logging.getLogger("compile_and_test_for_boards")
     try:
         compile_and_test_for_board.main(args)
     except SystemExit:
-        logging.info("Ignoring \'compile_and_test_for_board\' system exit")
+        logger.info("Ignoring \'compile_and_test_for_board\' system exit")
     except ValueError:
-        logging.info("Ignoring \'compile_and_test_for_board\' value error")
+        logger.info("Ignoring \'compile_and_test_for_board\' value error")
 
 
 PARSER = argparse.ArgumentParser(
@@ -123,7 +124,7 @@ PARSER = argparse.ArgumentParser(
     conflict_handler='resolve')
 PARSER.add_argument('--boards',
                     type=compile_and_test_for_board.list_from_string,
-                    default='ci-connected-boards',
+                    default='samr21-xpro,nrf52840dk',
                     help='List of board to test')
 # Remove Parent board positional argument
 PARSER._actions[2].container._remove_action(PARSER._actions[2])
