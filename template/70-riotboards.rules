@@ -39,6 +39,9 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 # nucleo-g071rb
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066FFF343135485043175029", SYMLINK+="riot/tty-nucleo-g071rb"
 
+# nucleo-wl55jc
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374e", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="003F001C3438510634313939", SYMLINK+="riot/tty-nucleo-wl55jc"
+
 # p-nucleo-wb55
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0668FF3837334D4E43121921", SYMLINK+="riot/tty-p-nucleo-wb55"
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066BFF3837334D4E43062019", SYMLINK+="riot/tty-p-nucleo-wb55"
