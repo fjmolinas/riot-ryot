@@ -217,7 +217,7 @@ def _install_avrdude():
 @task
 def _install_py_flashers():
     """Install pyocd and esptool."""
-    sudo('pip3 install pyocd esptool')
+    sudo('pip3 install pyocd esptool junit-xml')
 
 
 @task
