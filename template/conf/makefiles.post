@@ -3,3 +3,9 @@
 # The value will not be available in make but in the targets body
 MAKE_PARALLEL = $(filter -j -j%,$(MAKEFLAGS))
 DOCKER_MAKECMDGOALS += $(MAKE_PARALLEL)
+
+ifneq (,$(filter miniterm.py,$(TERMPROG)))
+  ifeq (1,$(shell command -v $(TERMPROG) > /dev/null 2>&1 ; echo $$?))
+    TERMPROG = miniterm
+  endif
+endif
