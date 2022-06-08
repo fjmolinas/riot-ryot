@@ -85,6 +85,7 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 
 # b-l072z-lrwan1
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0674FF535753845187212018", SYMLINK+="riot/tty-b-l072z-lrwan1"
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0670FF373731553457210730", SYMLINK+="riot/tty-b-l072z-lrwan1"
 
 #stm32l0538-disco
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0674FF515056805087162122", SYMLINK+="riot/tty-stm32l0538-disco"
@@ -106,6 +107,12 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}==
 
 # nucleo-f410rb
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066DFF515456707067162657", SYMLINK+="riot/tty-nucleo-f410rb"
+
+# nucleo-f410re
+## nucleo-f410re_0
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066EFF504955857567172841", SYMLINK+="riot/tty-nucleo-f401re", SYMLINK+="riot/tty-nucleo-f401re_0"
+## nucleo-f410re_1
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="066EFF323535474B43053731", SYMLINK+="riot/tty-nucleo-f401re", SYMLINK+="riot/tty-nucleo-f401re_1"
 
 # nucleo-f334r8
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374b", ATTRS{manufacturer}=="STMicroelectronics", ATTRS{serial}=="0672FF525056805087103008", SYMLINK+="riot/tty-nucleo-f334r8"
@@ -163,11 +170,13 @@ SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}==
 ## dwm1001_1
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000760103449", SYMLINK+="riot/tty-dwm1001", SYMLINK+="riot/tty-dwm1001_1"
 ## dwm1001_2
-SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000760103327", SYMLINK+="riot/tty-dwm1001", SYMLINK+="riot/tty-dwm1001_2"
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000760103520", SYMLINK+="riot/tty-dwm1001", SYMLINK+="riot/tty-dwm1001_2"
 ## dwm1001_3
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000760103401", SYMLINK+="riot/tty-dwm1001", SYMLINK+="riot/tty-dwm1001_3"
 ## dwm1001_4
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000760103600", SYMLINK+="riot/tty-dwm1001", SYMLINK+="riot/tty-dwm1001_4"
+## dwm1001_5
+SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="0105", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000760103435", SYMLINK+="riot/tty-dwm1001", SYMLINK+="riot/tty-dwm1001_5"
 
 # frdm-kw41z
 SUBSYSTEM=="tty", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1366", ATTRS{idProduct}=="1015", ATTRS{manufacturer}=="SEGGER", ATTRS{serial}=="000621000000", ATTRS{product}=="J-Link", SYMLINK+="riot/tty-frdm-kw41z"

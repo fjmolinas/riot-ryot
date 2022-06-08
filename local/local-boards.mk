@@ -27,6 +27,7 @@ STM32_BOARDS += nucleo-f746zg
 STM32_BOARDS += stm32f429i-disc1
 STM32_BOARDS += nucleo-f446re
 STM32_BOARDS += nucleo-f410rb
+STM32_BOARDS += nucleo-f401re
 STM32_BOARDS += nucleo-f303k8
 STM32_BOARDS += nucleo-f303re
 STM32_BOARDS += nucleo-f334r8
